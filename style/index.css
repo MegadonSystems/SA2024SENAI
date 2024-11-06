@@ -1,0 +1,119 @@
+#pai {
+    width: 100vw;
+    height: 100vh;   
+    z-index: 2;
+    display: flex;
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+#imgEpi{    
+    height: 100%;
+    width: 40%;
+    padding: 0;
+    margin: 0;
+    filter: grayscale();
+    transition: 1s ease-in-out;
+}
+
+#imgEpi:hover{
+    filter: none;
+    transition: 1s ease-in-out;
+}
+
+#divImg{
+    height: 100%;
+    width: 55%;
+    padding: 0;
+    margin: 0;
+}
+
+#divLogin{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo{
+    width: 100%;
+    font-size: 2rem;
+    margin-left: 5px;
+    color: antiquewhite;
+}
+
+#subtitulo{
+    font-size: 1.8rem;
+    margin-left: 5px;
+    color: antiquewhite;
+}
+
+#texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    width: 80%;
+}
+
+#formLogin{
+    width: 80%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+}
+
+.input{
+    width: 35vw;
+    height: 10vh;
+    font-size: 1.3rem;
+    padding: 7px;
+}
+
+#txt_email{
+    margin-top: 5%;
+    background-color: rgb(31, 31, 31);
+    border: none;
+
+}
+
+#txt_senha{
+    margin-top: 4%;
+}
+
+#btnEnviar{
+    margin-top: 5%;
+    width: 26vw;
+    height: 12vh;
+    font-size: 1.7rem;
+    background-color: rgb(235, 239, 243);
+    border: none;
+}
+
+#btnEnviar:hover{
+    cursor: pointer;
+    background-color: rgb(185, 188, 190);
+}
+
+#orgLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
