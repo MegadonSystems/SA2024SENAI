@@ -98,34 +98,6 @@
     });
   }
 
-  function carregarColaborador(idColaborador){
-      $.ajax({
-        type: 'post',
-        dataType: 'json',
-        url: 'src/carregar/carregarColaborador.php',
-        data: {
-            'id_colaborador': idColaborador
-        },
-        success: function(retorno) {
-            if (retorno['status'] == 'sucesso') {
-                // Imprimir dados do colaborador no modal
-
-                document.getElementById('id').value = retorno['dados']['id_colaborador']
-                document.getElementById('nome').value = retorno['dados']['nome']
-                document.getElementById('cpf').value = retorno['dados']['cpf']
-                document.getElementById('data_nascimento').value = retorno['dados']['data_nascimento']
-                document.getElementById('email').value = retorno['dados']['email']
-
-            } else {
-                alert(retorno['mensagem'])
-            }
-        },
-        error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
-        }
-    })
-    }
-
     function carregarUsuario(idUsuario){
       $.ajax({
         type: 'post',
