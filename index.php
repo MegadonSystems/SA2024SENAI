@@ -35,7 +35,7 @@ if (isset($_SESSION['logado'])) {
                         <input class="input" id="txt_email" type="text" placeholder="https://devsnap.me/css-input-text" required>
                         
                         <input class="input" id="txt_senha" type="password" placeholder="https://devsnap.me/css-input-text" required>
-                        <button id="btnEnviar" name="btnEnviar">https://devsnap.me/css-input-text</button>
+                        <button id="btnEnviar" name="btnEnviar">Fazer login</button>
                     </form>
                 </div>
             </div>
