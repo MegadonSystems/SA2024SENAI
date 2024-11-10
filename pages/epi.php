@@ -168,8 +168,8 @@
 
   function gerarCod(idEpi){
     $.ajax({
-            type: 'post',
-            dataType: 'json',
+            type: 'GET',
+            dataType: 'JSON',
             url: 'src/gerarCodBar.php',
             data: {
                 'id': idEpi

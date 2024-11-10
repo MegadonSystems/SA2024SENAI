@@ -1,5 +1,5 @@
 <?php
-include_once '../class/BancoDeDados.php';
+require_once '../class/BancoDeDados.php';
 
 
 $formulario['id'] = isset($_POST['id'])? $_POST['id'] : '';
@@ -20,7 +20,7 @@ $formulario['imagem_old'] = isset($_POST['imagem_old'])? $_POST['imagem_old'] : 
 //Enviando a imagem pro servido
 if (isset($formulario['imagem_new']) && $formulario['imagem_new']['size'] > 0) {
     $nome_img = uniqid() . '.jpg';
-    move_uploaded_file($formulario['imagem_new']['tmp_name'], '../upload/imgEpis' . $nome_img);
+    move_uploaded_file($formulario['imagem_new']['tmp_name'], '../upload/imgEpis/' . $nome_img);
     $formulario['imagem'] = $nome_img;
 } else {
     $formulario['imagem_old'] = isset($_POST['imagem_old']) ? $_POST['imagem_old'] : '';
@@ -44,8 +44,11 @@ try{
         $banco->executarComando($sql, $parametros);
 
         echo json_encode(['codigo' => 1, 'mensagem' => 'Epi cadastrada com sucesso!']);
-    }else{
 
+        // Gerar Código de Barras
+        include_once '../gerarCodBar.php';
+    }else{
+        // Desenvolver o alterar
     }
 }catch(PDOException $erro){
     echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
