@@ -76,7 +76,7 @@
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['codigo_barra']? `<a href="src/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
+              let codBar = epi['codigo_barra']? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
 
               var linha = document.createElement('tr');
               linha.innerHTML =
