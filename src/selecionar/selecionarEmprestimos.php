@@ -10,8 +10,27 @@ try {
     $dados = $banco->consultar($sql, [], true);
 
     if($dados){
-    // Verificação se houver dados dentro de $dados, imprime um script JS
-    // para passar os valores no formulário
+    //Trocar o ID pelo Nome ↓
+
+    // Colaborador
+    for($i = 0; $i < count($dados); $i++){
+        $sql = 'SELECT nome FROM colaboradores WHERE id_colaborador = ?';
+        $parametros = [$dados[$i]['id_colaborador']];
+
+        $colab = $banco->consultar($sql, $parametros, false);
+
+        $dados[$i]['id_colaborador'] = $colab['nome'];
+    }
+
+    // EPI
+    for($i = 0; $i < count($dados); $i++){
+        $sql = 'SELECT nome FROM epis WHERE id_epi = ?';
+        $parametros = [$dados[$i]['id_epi']];
+
+        $epi = $banco->consultar($sql, $parametros, false);
+
+        $dados[$i]['id_epi'] = $epi['nome'];
+    }
 
     $resposta = [
         'status' => 'sucesso',
@@ -30,7 +49,7 @@ try {
 } catch (PDOException $erro) {
     $resposta = [
         'status' => 'erro',
-        'mensagem' => "Houve uma excessão no banco de dados: " + $erro->getMessage()
+        'mensagem' => "Houve uma excessão no banco de dados: " . $erro->getMessage()
     ];
     echo json_encode($resposta);
 }

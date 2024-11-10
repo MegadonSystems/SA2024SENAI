@@ -125,19 +125,24 @@
                            var tabelaEmprestimos = document.querySelector('#tabela-emprestimos tbody');
                            var emprestimos = retorno['dados'];
                            emprestimos.forEach(function(emprestimo) {
-                               if(emprestimo.statusE == 1){
-                                  var status = 'Ativo' 
-                               }else{
-                                  var status = 'Concluído'
+                               if (emprestimo.status == 1) {
+                                   var status = 'Ativo'
+                               } else {
+                                   var status = 'Concluído'
                                }
-                               
+
                                var dataR = new Date(emprestimo['data_retirada']);
                                var rFormatada = dataR.toLocaleDateString('pt-BR');
 
-                               var dataD = new Date(emprestimo['data_devolucao']);
-                               var dFormatada = dataD.toLocaleDateString('pt-BR');
-
+                               if(emprestimo['data_devolucao'] !== '0000-00-00'){
+                                    var dataD = new Date(emprestimo['data_devolucao']);
+                                    var dFormatada = dataD.toLocaleDateString('pt-BR');
+                               }else{
+                                    var dFormatada = 'Não Devolvido';
+                               }
                                
+
+
                                var linha = document.createElement('tr');
                                linha.innerHTML =
                                    `
@@ -171,34 +176,34 @@
 
            function devolverEPI(id, status) {
                console.log(status)
-               if(status == 2){
-                alert('Empréstimo já foi finalizado, impossível devolver EPI!')
-               
-            }else{
-                var confirmar = confirm('Tem certeza que deseja devolver o EPI?')
-               if(confirmar){$.ajax({
-                   type: 'post',
-                   dataType: 'json',
-                   url: 'src/devolverEPI.php',
-                   data: {
-                       'id': id
-                   },
-                   success: function(retorno) {
-                       console.log(retorno)
-                       if (retorno['status'] == 'sucesso') {
-                           alert(retorno['mensagem'])
-                           location.reload()
-                       } else {
+               if (status == 2) {
+                   alert('Empréstimo já foi finalizado, impossível devolver EPI!')
 
-                       }
+               } else {
+                   var confirmar = confirm('Tem certeza que deseja devolver o EPI?')
+                   if (confirmar) {
+                       $.ajax({
+                           type: 'post',
+                           dataType: 'json',
+                           url: 'src/devolverEPI.php',
+                           data: {
+                               'id': id
+                           },
+                           success: function(retorno) {
+                               console.log(retorno)
+                               if (retorno['status'] == 'sucesso') {
+                                   alert(retorno['mensagem'])
+                                   location.reload()
+                               } else {
 
-                   },
-                   error: function(erro) {
-                       console.error('Ocorreu um erro na requisição: ' + erro);
+                               }
+
+                           },
+                           error: function(erro) {
+                               console.error('Ocorreu um erro na requisição: ' + erro);
+                           }
+                       })
                    }
-               })}
-            }
+               }
            }
-
-
        </script>

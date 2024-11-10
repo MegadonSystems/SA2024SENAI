@@ -29,9 +29,9 @@
             <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <input type="hidden" id="txt_id" value="novo">
+            <input type="hidden" id="txt_id" value="NOVO">
             <input type="hidden" id="txt_nome_imagem">
-
+            
             <div class="form-group">
               <label>Nome</label>
               <input type="text" class="form-control" id="nome" required>
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
               <label>Qtd. Estoque</label>
-              <input type="text" class="form-control" id="estoque" required>
+              <input type="number" class="form-control" id="estoque" required>
             </div>
             <div class="form-group">
               <label>Imagem</label>
@@ -75,6 +75,8 @@
             var tabelaEpis = document.querySelector('#tabela-epis tbody');
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
+              let codBar = epi['cod_barra']? `<a href="src/codBar${epi['cod_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
+
               var linha = document.createElement('tr');
               linha.innerHTML =
                 `
@@ -83,10 +85,10 @@
               <td id="descricaoFont">${epi['descricao']}</td>
               <td style="width:170px">${epi['qtd_estoque']}</td>
               <td style="width:150px">${epi['imagem']}</td>
-              <td style="width:150px; border-right: 1px solid black">${epi['cod_barra']}</td>
+              <td style="width:150px; border-right: 1px solid black">${codBar}</td>
               <td style="width:160px; border-bottom: none; border-right: none"" class='orgAcao'>  
-              <a class='acao' href='#' title='Alterar' onclick='excluirEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-pencil-square'></i></i></i></a>
-              <a class='acao' href='#' title='Excluir' onclick='carregarEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
+              <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-pencil-square'></i></i></i></a>
+              <a class='acao' href='#' title='Excluir'  onclick='excluirEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
               </td>
             `
 

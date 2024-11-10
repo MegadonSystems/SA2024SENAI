@@ -143,10 +143,13 @@ if (!isset($_SESSION['logado'])) {
             });
         } else if (tela === "epi"){
             const dados = new FormData()
+            dados.append('id', document.getElementById('txt_id').value)
             dados.append('nome', document.getElementById('nome').value)
             dados.append('descricao', document.getElementById('descricao').value)
             dados.append('estoque', document.getElementById('estoque').value)
+
             dados.append('imagem_new', document.getElementById('imagem').files[0])
+            dados.append('imagem_old', document.getElementById('txt_nome_imagem').value)
             // imagem old
             $.ajax({
             type: 'post',
@@ -155,12 +158,6 @@ if (!isset($_SESSION['logado'])) {
             dataType: 'json',
             url: 'src/cadastrar/cadastrarEpi.php',
             data: dados,
-            // data: { 
-            //     'nome': document.getElementById('nome').value,
-            //     'descricao':  document.getElementById('descricao').value,
-            //     'estoque': document.getElementById('estoque').value,
-            //     imagem
-            // },
             success: function(retorno) {
                 if(retorno.codigo === 1){
                     alert(retorno.mensagem)
