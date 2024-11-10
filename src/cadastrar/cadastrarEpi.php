@@ -43,7 +43,7 @@ try{
 
         $banco->executarComando($sql, $parametros);
 
-        echo json_encode(['codigo' => 1, 'mensagem' => 'Epi cadastrada com sucesso!']);
+        echo json_encode(['codigo' => 1, 'mensagem' => 'Epi cadastrado com sucesso!']);
     }else{
 
     }
