@@ -73,9 +73,10 @@
           console.log(retorno)
           if (retorno['status'] == 'sucesso') {
             var tabelaEpis = document.querySelector('#tabela-epis tbody');
+            tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['cod_barra']? `<a href="src/codBar${epi['cod_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
+              let codBar = epi['codigo_barra']? `<a href="src/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
 
               var linha = document.createElement('tr');
               linha.innerHTML =
@@ -86,7 +87,7 @@
               <td style="width:160px">${epi['qtd_estoque']}</td>
               <td style="width:115px">${epi['imagem']}</td>
               <td style="width:140px; border-right: 1px solid black">${codBar}</td>
-              <td style="width:190px; border-bottom: none; border-right: none"" class='orgAcao'>  
+              <td style="width:190px; border-bottom: none; border-right: none" class='orgAcao'>  
               <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:20px'><i class='bi bi-pencil-square'></i></i></i></a>
               <a class='acao' href='#' title='Excluir'  onclick='excluirEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
               <a class='acao' href='#' title='Gerar Cod. Barras' onclick='gerarCod(${epi['id_epi']})' style='margin-left:25px'><i class="bi bi-upc"></i></a>
@@ -178,8 +179,8 @@
                 if (retorno['codigo'] == '1') {
                   alert(retorno['mensagem'])
                     
-                    listarEpi(); //Atualizar a listagem de EPI's
-                    window.location.reload()
+                  listarEpi(); //Atualizar a listagem de EPI's
+                    // window.location.reload()
                 }
             },
             error: function(erro) {
