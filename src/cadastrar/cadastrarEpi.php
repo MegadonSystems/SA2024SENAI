@@ -20,7 +20,7 @@ $formulario['imagem_old'] = isset($_POST['imagem_old'])? $_POST['imagem_old'] : 
 //Enviando a imagem pro servido
 if (isset($formulario['imagem_new']) && $formulario['imagem_new']['size'] > 0) {
     $nome_img = uniqid() . '.jpg';
-    move_uploaded_file($formulario['imagem_new']['tmp_name'], '../upload/imgEpis' . $nome_img);
+    move_uploaded_file($formulario['imagem_new']['tmp_name'], '../upload/imgEpis/' . $nome_img);
     $formulario['imagem'] = $nome_img;
 } else {
     $formulario['imagem_old'] = isset($_POST['imagem_old']) ? $_POST['imagem_old'] : '';
