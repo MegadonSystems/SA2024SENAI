@@ -7,12 +7,12 @@
     <thead>
       <tr style="background-color: rgb(44, 44, 44);; color: antiquewhite;">
         <th style="width:50px">#</th>
-        <th style="width:250px">Nome</th>
+        <th style="width:230px">Nome</th>
         <th>Descrição</th>
-        <th style="width:170px">Qtd. Estoque</th>
-        <th style="width:150px">Imagem</th>
-        <th style="width:150px">Cod. Barras</th>
-        <th style="width:160px; border-bottom: none ">Ações</th>
+        <th style="width:160px">Qtd. Estoque</th>
+        <th style="width:115px">Imagem</th>
+        <th style="width:140px">Cod. Barra</th>
+        <th style="width:190px; border-bottom: none ">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -81,14 +81,15 @@
               linha.innerHTML =
                 `
               <td style="width:50px">${epi['id_epi']}</td>
-              <td id="nomeFont" style="width:250px">${epi['nome']}</td>
+              <td id="nomeFont" style="width:230px">${epi['nome']}</td>
               <td id="descricaoFont">${epi['descricao']}</td>
-              <td style="width:170px">${epi['qtd_estoque']}</td>
-              <td style="width:150px">${epi['imagem']}</td>
-              <td style="width:150px; border-right: 1px solid black">${codBar}</td>
-              <td style="width:160px; border-bottom: none; border-right: none"" class='orgAcao'>  
-              <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-pencil-square'></i></i></i></a>
+              <td style="width:160px">${epi['qtd_estoque']}</td>
+              <td style="width:115px">${epi['imagem']}</td>
+              <td style="width:140px; border-right: 1px solid black">${codBar}</td>
+              <td style="width:190px; border-bottom: none; border-right: none"" class='orgAcao'>  
+              <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:20px'><i class='bi bi-pencil-square'></i></i></i></a>
               <a class='acao' href='#' title='Excluir'  onclick='excluirEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
+              <a class='acao' href='#' title='Gerar Cod. Barras' onclick='gerarCod(${epi['id_epi']})' style='margin-left:25px'><i class="bi bi-upc"></i></a>
               </td>
             `
 
@@ -163,4 +164,27 @@
         })
     }
 }  
+
+  function gerarCod(idEpi){
+    $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: 'src/gerarCodBar.php',
+            data: {
+                'id': idEpi
+            },
+            success: function(retorno) {
+
+                if (retorno['codigo'] == '1') {
+                  alert(retorno['mensagem'])
+                    
+                    listarEpi(); //Atualizar a listagem de EPI's
+                    window.location.reload()
+                }
+            },
+            error: function(erro) {
+                alert('Ocorreu um erro na requisição: ' + erro);
+            }
+        })
+  }
   </script>
