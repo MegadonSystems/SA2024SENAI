@@ -33,15 +33,15 @@
 
           <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" id="nome" required>
+            <input type="text" class="form-control" id="nome" required maxlength="255">
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" id="email" required>
+            <input type="email" class="form-control" id="email" required maxlength="255">
           </div>
           <div class="form-group">
             <label>Senha</label>
-            <input type="password" class="form-control" id="senha" required>
+            <input type="password" class="form-control" id="senha" required maxlength="255">
           </div>
         </div>
         <div class="modal-footer">
@@ -77,8 +77,8 @@
               <td>${usuario['email']}</td>
               <td style="width: 250px; border-right: none">${usuario['senha']}</td>
               <td style="width: 160px; border-bottom: none; border-right: none" class='orgAcao'>  
-              <a class='acao' href='#' title='Alterar' onclick='excluirUsuario(${usuario['id_usuario']})' style='margin-left:30px'><i class='bi bi-pencil-square'></i></i></i></a>
-              <a class='acao' href='#' title='Excluir' onclick='carregarUsuario(${usuario['id_usuario']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
+              <a class='acao' href='#' title='Alterar' onclick='carregarUsuario(${usuario['id_usuario']})' style='margin-left:30px'><i class='bi bi-pencil-square'></i></i></i></a>
+              <a class='acao' href='#' title='Excluir' onclick='excluirUsuario(${usuario['id_usuario']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>
               </td>
             `
 

@@ -64,7 +64,7 @@
 }
 
 .main-table tr:nth-child(even) {
-    background-color: #eaeaea; 
+    background-color: #e4e4e4; 
 }
 
 .main-table tr:nth-child(odd) {
@@ -86,7 +86,7 @@
 }
 
 #descricaoFont{
-    font-size: 0.6rem;
+    font-size: 0.665rem;
 }
 
 #nomeFont{

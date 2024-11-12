@@ -7,11 +7,12 @@
                <tr style="background-color: rgb(44, 44, 44);; color: antiquewhite;">
                    <th style="width:50px">#</th>
                    <th>Descrição</th>
+                   <th style="width:140px">Quantidade</th>
                    <th style="width:120px">Status</th>
                    <th style="width:130px">Retirada</th>
-                   <th style="width:135px">Devolução</th>
-                   <th style="width:150px">Colaborador</th>
-                   <th style="width:80px">EPI</th>
+                   <th style="width:150px">Devolução</th>
+                   <th style="width:240px">Colaborador</th>
+                   <th style="width:190px">EPI</th>
                    <th style="width:150px; border-bottom: none">Ações</th>
                </tr>
            </thead>
@@ -34,8 +35,14 @@
 
                            <div class="form-group">
                                <label>Descrição</label>
-                               <input type="text" class="form-control" id="descricao" required>
+                               <input type="text" class="form-control" id="descricao" required maxlength="255">
                            </div>
+
+                           <div class="form-group">
+                               <label>Quantidade:</label>
+                               <input type="text" class="form-control" id="quantidade">
+                           </div> <br>
+
                            <div class="form-group">
                                <label>Data de Retirada</label>
                                <input type="date" class="form-control" id="data_retirada" required>
@@ -74,7 +81,6 @@
                </div>
            </div>
        </div>
-
 
        <script>
            window.onload = function() {
@@ -147,12 +153,13 @@
                                linha.innerHTML =
                                    `
                                 <td style="width:50px">${emprestimo['id_emprestimo']}</td>
-                                <td id="descricaoFont">${emprestimo['descricao']}</td>
+                                <td id='descricaoFont'>${emprestimo['descricao']}</td>
+                                <td style="width:140px">${emprestimo['quantidade']}</td>
                                 <td style="width:120px">${status}</td>
                                 <td style="width:130px">${rFormatada}</td>
-                                <td style="width:135px">${dFormatada}</td>
-                                <td style="width:150px">${emprestimo['id_colaborador']}</td>
-                                <td style="width:80px">${emprestimo['id_epi']}</td>
+                                <td style="width:150px">${dFormatada}</td>
+                                <td style="width:240px">${emprestimo['id_colaborador']}</td>
+                                <td style="width:190px">${emprestimo['id_epi']}</td>
                                 <td style="width:150px; border: none" class="orgAcao">  
                                 <a class='acao' href='#' onclick='devolverEPI(${emprestimo['id_emprestimo']}, ${emprestimo['statusE']} )' title='Devolver EPI' style='margin-left:43%'> <i class='bi bi-arrow-left-square-fill'></i> </a>
                                 </td>
