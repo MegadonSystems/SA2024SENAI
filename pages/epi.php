@@ -34,7 +34,7 @@
             
             <div class="form-group">
               <label>Nome</label>
-              <input type="text" class="form-control" id="nome" required>
+              <input type="text" class="form-control" id="nome" required maxlength="255">
             </div>
             <div class="form-group">
               <label>Descrição</label>
@@ -77,6 +77,24 @@
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
               let codBar = epi['codigo_barra']? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
+
 
               var linha = document.createElement('tr');
               linha.innerHTML =

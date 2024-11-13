@@ -1,119 +1,63 @@
-#pai {
-    width: 100vw;
-    height: 100vh;   
-    z-index: 2;
-    display: flex;
+body{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-* {
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+.box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.89);
+    border-radius: 3px;
+    padding: 50px 65px;
 }
 
-#imgEpi{    
-    height: 100%;
-    width: 40%;
-    padding: 0;
-    margin: 0;
-    filter: grayscale();
-    transition: 1s ease-in-out;
+.inputContainer{
+    position: relative;
+    margin-bottom: 50px;
 }
 
-#imgEpi:hover{
-    filter: none;
-    transition: 1s ease-in-out;
-}
-
-#divImg{
-    height: 100%;
-    width: 55%;
-    padding: 0;
-    margin: 0;
-}
-
-#divLogin{
-    height: 100%;
-    width: 100%;
-    background-color: rgb(31, 31, 31);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-#titulo{
-    width: 100%;
-    font-size: 2rem;
-    margin-left: 5px;
+.inputContainer label{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 1.2rem;
     color: antiquewhite;
+    pointer-event: none;
+    transition: all 0.5s ease-in-out;
 }
 
-#subtitulo{
-    font-size: 1.8rem;
-    margin-left: 5px;
-    color: antiquewhite;
+.inputContainer input{
+    color:#fff;
+    border:0;
+    border-bottom:1px solid #555;  
+    background: transparent;
+    width:100%;
+    padding:10px 0 5px 0;
+    font-size: 1.1rem;
 }
 
-#texto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10%;
-    width: 80%;
-}
-
-#formLogin{
-    width: 80%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: start;
-}
-
-.input{
-    width: 35vw;
-    height: 10vh;
-    font-size: 1.3rem;
-    padding: 7px;
-}
-
-#txt_email{
-    margin-top: 5%;
-    background-color: rgb(31, 31, 31);
+.inputContainer input:focus{
     border: none;
-
+    outline: none;
+    border-bottom: 2px solid antiquewhite;
 }
 
-#txt_senha{
-    margin-top: 4%;
+.inputContainer input:focus ~ label,
+.inputContainer input:valid ~ label{
+	top:-15px;
+	font-size: 1.05rem;
+	
 }
 
-#btnEnviar{
-    margin-top: 5%;
-    width: 26vw;
-    height: 12vh;
-    font-size: 1.7rem;
-    background-color: rgb(235, 239, 243);
+.btn{
     border: none;
+    outline: none;
+    background-color: antiquewhite;
+    height: 40px;
 }
 
-#btnEnviar:hover{
+.btn:hover{
     cursor: pointer;
-    background-color: rgb(185, 188, 190);
-}
-
-#orgLogin{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    background-color: rgb(255, 222, 179);
 }

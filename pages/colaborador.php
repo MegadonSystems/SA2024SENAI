@@ -33,11 +33,11 @@
 
             <div class="form-group">
               <label>Nome</label>
-              <input type="text" class="form-control" id="nome" required>
+              <input type="text" class="form-control" id="nome" required maxlength="255">
             </div>
             <div class="form-group">
               <label>E-Mail</label>
-              <input type="email" class="form-control" id="email" required>
+              <input type="email" class="form-control" id="email" required maxlength="255">
             </div>
             <div class="form-group">
               <label>CPF</label>

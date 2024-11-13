@@ -22,32 +22,29 @@ if (isset($_SESSION['logado'])) {
 </head>
 
 <body>
-    <div id="pai">
-        <img id="imgEpi" src="assets/img/trabalhador-de-uniforme-com-capacete-e-oculos-de-protecao_23-2148773461.jpg" alt="">
-        <div id="divLogin">
-            <div id="orgLogin">
-                <div id="texto">
-                    <p id="titulo" style="margin-top: 5.5%;"> <b>Sistema de empréstimo de EPI's</b></p> <br> <br> <br>
-                    <p id="subtitulo">https://devsnap.me/css-input-text</p>
-                </div>
-                <div id="formLogin">
-                    <form id="formulario" onsubmit="enviarLogin()">
-                        <input class="input" id="txt_email" type="text" placeholder="https://devsnap.me/css-input-text" required>
-                        
-                        <input class="input" id="txt_senha" type="password" placeholder="https://devsnap.me/css-input-text" required>
-                        <button id="btnEnviar" name="btnEnviar">Fazer login</button>
-                    </form>
-                </div>
+    <div class="box">
+        <form onsubmit="enviarLogin()">
+            <div class="inputContainer">
+                <input type="text" id="txt_email" required />
+                <label>Email</label>
             </div>
-        </div>
+
+            <div class="inputContainer">
+                <input type="text" id="txt_senha" required />
+                <label>Senha</label>
+            </div>
+
+            <button type="button" class="btn" onclick="enviarLogin()">Fazer Login</button>
+        </form>
     </div>
 </body>
 
-<script> 
+<script>
+    $('form').submit(() => {
+        return false
+    })
 
-    $('form').submit(() => {return false})
-
-    function enviarLogin(){
+    function enviarLogin() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -57,12 +54,12 @@ if (isset($_SESSION['logado'])) {
                 'senha': document.getElementById('txt_senha').value
             },
             success: function(retorno) {
-                if(retorno.codigo === 1){
+                if (retorno.codigo === 1) {
                     window.location.reload()
                     alert('Login efetuado com sucesso!')
-                }else if(retorno.codigo === 2){
+                } else if (retorno.codigo === 2) {
                     alert(retorno.mensagem)
-                }else if(retorno.codigo === 3){
+                } else if (retorno.codigo === 3) {
                     alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
                     console.log(retorno.mensagem)
                 }
@@ -71,7 +68,7 @@ if (isset($_SESSION['logado'])) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
                 console.log(erro)
             }
-            })
+        })
     }
 </script>
 

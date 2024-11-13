@@ -39,10 +39,15 @@ if (!isset($_SESSION['logado'])) {
             <p style="margin-bottom: 0; margin-left: 4%;">Empréstimo de EPI's</p>
         </div>
         <div id="item">
+            <span class="divider"></span>
             <a id="epi" href="sistema.php?tela=epi" class="link"> <i class="bi bi-plus-circle-fill"></i></i> EPI</a>
+            <span class="divider"></span>
             <a id="emprestimo" href="sistema.php?tela=emprestimo" class="link"> <i class="bi bi-handbag-fill"></i></i> Empréstimo </a>
+            <span class="divider"></span>
             <a id="usuario" href="sistema.php?tela=usuario" class="link"> <i class="bi bi-person-fill-add"></i> Usuário </a>
+            <span class="divider"></span>
             <a id="colaborador" href="sistema.php?tela=colaborador" class="link"> <i class="bi bi-person-fill-add"></i> Colaborador </a>
+            <span class="divider"></span>
             <a href="#" class="link" onclick="sair()"><i class="bi bi-box-arrow-right"></i> SAIR</a>
         </div>
     </nav>
@@ -183,6 +188,7 @@ if (!isset($_SESSION['logado'])) {
             url: 'src/cadastrar/cadastrarEmprestimo.php',
             data: { 
                 'descricao':  document.getElementById('descricao').value,
+                'quantidade':  document.getElementById('quantidade').value,
                 'data_retirada': document.getElementById('data_retirada').value,
                 'data_devolucao': document.getElementById('data_devolucao').value,
                 'id_colaborador': document.getElementById('fk_colaborador').value,
