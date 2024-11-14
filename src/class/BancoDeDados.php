@@ -14,6 +14,19 @@
             $stmt->execute($parametros);
         }
 
+        // Método Iniciar Transação
+        public function iniciarTransacao(){
+            $this->conexao->beginTransaction();
+        }
+        // Método Confirmar Transação
+        public function confirmarTransacao(){
+            $this->conexao->commit();
+        }
+        // Método voltar Transação
+        public function voltarTransacao(){
+            $this->conexao->rollBack();
+        }
+
         // Método Consultar
         public function consultar($sql, $parametros = [], $fetchAll = false) {
             $stmt = $this->conexao->prepare($sql);

@@ -28,8 +28,7 @@
             <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <input type="hidden" id="txt_id" value="novo">
-            <input type="hidden" id="txt_nome_imagem">
+            <input type="hidden" id="txt_id" value="NOVO">
 
             <div class="form-group">
               <label>Nome</label>
@@ -116,17 +115,18 @@
         dataType: 'json',
         url: 'src/carregar/carregarColaborador.php',
         data: {
-            'id_colaborador': idColaborador
+            'id': idColaborador
         },
         success: function(retorno) {
-            if (retorno['status'] == 'sucesso') {
+            if (retorno['status'] == 1) {
                 // Imprimir dados do colaborador no modal
-
-                document.getElementById('id').value = retorno['dados']['id_colaborador']
+                document.getElementById('txt_id').value = retorno['dados']['id_colaborador']
                 document.getElementById('nome').value = retorno['dados']['nome']
                 document.getElementById('cpf').value = retorno['dados']['cpf']
                 document.getElementById('data_nascimento').value = retorno['dados']['data_nascimento']
                 document.getElementById('email').value = retorno['dados']['email']
+
+                abrirModal()
 
             } else {
                 alert(retorno['mensagem'])
@@ -149,15 +149,15 @@
             dataType: 'json',
             url: 'src/excluir/excluirColaborador.php',
             data: {
-                'id_colaborador': idColaborador
+                'id': idColaborador,
             },
             success: function(retorno) {
                 alert(retorno['mensagem'])
 
-                if (retorno['status'] == 'sucesso') {
+                if (retorno['status'] == 1) {
 
-                    listarColaborador(); //Atualizar a listagem de colaboradores
-                    window.location.reload()
+                    listarColaborador();
+                    // window.location.reload()
                 }
             },
             error: function(erro) {

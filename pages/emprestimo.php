@@ -40,7 +40,7 @@
 
                            <div class="form-group">
                                <label>Quantidade:</label>
-                               <input type="text" class="form-control" id="quantidade">
+                               <input type="number" class="form-control" id="quantidade">
                            </div> <br>
 
                            <div class="form-group">

@@ -98,20 +98,20 @@ if (!isset($_SESSION['logado'])) {
             dataType: 'json',
             url: 'src/cadastrar/cadastrarUsuario.php',
             data: {
+                'id': document.getElementById('txt_id').value,
                 'nome': document.getElementById('nome').value,
                 'email': document.getElementById('email').value,
                 'senha': document.getElementById('senha').value
             },
             success: function(retorno) {
-                if(retorno.codigo === 1){
+                if(retorno.status === 1){
                     alert(retorno.mensagem)
                     window.location.reload()
-                }else if(retorno.codigo === 2){
+                }else{
                     alert(retorno.mensagem)
-                }else if(retorno.codigo === 3){
-                    alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
-                    console.log(retorno.mensagem)
                 }
+
+                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -125,21 +125,21 @@ if (!isset($_SESSION['logado'])) {
             dataType: 'json',
             url: 'src/cadastrar/cadastrarColaborador.php',
             data: { 
+                'id': document.getElementById('txt_id').value,
                 'nome': document.getElementById('nome').value,
                 'email':  document.getElementById('email').value,
                 'cpf': document.getElementById('cpf').value,
                 'data_nascimento': document.getElementById('data_nascimento').value,
             },
             success: function(retorno) {
-                if(retorno.codigo === 1){
+                if(retorno.status === 1){
                     alert(retorno.mensagem)
                     window.location.reload()
-                }else if(retorno.codigo === 2){
+                }else{
                     alert(retorno.mensagem)
-                }else if(retorno.codigo === 3){
-                    alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
-                    console.log(retorno.mensagem)
                 }
+
+                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -164,15 +164,14 @@ if (!isset($_SESSION['logado'])) {
             url: 'src/cadastrar/cadastrarEpi.php',
             data: dados,
             success: function(retorno) {
-                if(retorno.codigo === 1){
+                if(retorno.status === 1){
                     alert(retorno.mensagem)
                     window.location.reload()
-                }else if(retorno.codigo === 2){
+                }else{
                     alert(retorno.mensagem)
-                }else if(retorno.codigo === 3){
-                    alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
-                    console.log(retorno.mensagem)
                 }
+
+                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -195,15 +194,14 @@ if (!isset($_SESSION['logado'])) {
                 'id_epi': document.getElementById('fk_epi').value
             },
             success: function(retorno) {
-                if(retorno.codigo === 1){
+                if(retorno.status === 1){
                     alert(retorno.mensagem)
                     window.location.reload()
-                }else if(retorno.codigo === 2){
+                }else{
                     alert(retorno.mensagem)
-                }else if(retorno.codigo === 3){
-                    alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
-                    console.log(retorno.mensagem)
                 }
+
+                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
