@@ -77,6 +77,7 @@
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
               let codBar = epi['codigo_barra']? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
+              let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>`: 'Não Gerada'
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
@@ -103,7 +104,7 @@
               <td id="nomeFont" style="width:230px">${epi['nome']}</td>
               <td id="descricaoFont">${epi['descricao']}</td>
               <td style="width:160px">${epi['qtd_estoque']}</td>
-              <td style="width:115px">${epi['imagem']}</td>
+              <td style="width:115px">${imagem}</td>
               <td style="width:140px; border-right: 1px solid black">${codBar}</td>
               <td style="width:190px; border-bottom: none; border-right: none" class='orgAcao'>  
               <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:20px'><i class='bi bi-pencil-square'></i></i></i></a>
