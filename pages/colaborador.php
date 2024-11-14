@@ -74,10 +74,15 @@
           console.log(retorno)
           if (retorno['status'] == 'sucesso') {
             var tabelaColaboradores = document.querySelector('#tabela-colaboradores tbody');
+            tabelaColaboradores.innerHTML = ''
             var colaboradores = retorno['dados'];
             colaboradores.forEach(function(colaborador) {
               var dataNascimento = new Date(colaborador['data_nascimento']);
-              var dataFormatada = dataNascimento.toLocaleDateString('pt-BR');
+              var dataFormatada = dataNascimento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric'});
+              
+              console.log(colaborador['data_nascimento'])
+              console.log(dataNascimento)
+              console.log(dataFormatada)
 
               var linha = document.createElement('tr');
               linha.innerHTML =

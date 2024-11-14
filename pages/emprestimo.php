@@ -129,6 +129,7 @@
                    success: function(retorno) {
                        if (retorno['status'] == 'sucesso') {
                            var tabelaEmprestimos = document.querySelector('#tabela-emprestimos tbody');
+                           tabelaEmprestimos.innerHTML = ''
                            var emprestimos = retorno['dados'];
                            emprestimos.forEach(function(emprestimo) {
                                if (emprestimo.status == 1) {

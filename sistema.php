@@ -106,12 +106,12 @@ if (!isset($_SESSION['logado'])) {
             success: function(retorno) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
-                    window.location.reload()
+                    fecharModal()
+                    document.querySelector('form').reset()
+                    listarUsuario()
                 }else{
                     alert(retorno.mensagem)
                 }
-
-                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -134,12 +134,12 @@ if (!isset($_SESSION['logado'])) {
             success: function(retorno) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
-                    window.location.reload()
+                    fecharModal()
+                    document.querySelector('form').reset()
+                    listarColaborador()
                 }else{
                     alert(retorno.mensagem)
                 }
-
-                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -154,24 +154,24 @@ if (!isset($_SESSION['logado'])) {
             dados.append('estoque', document.getElementById('estoque').value)
 
             dados.append('imagem_new', document.getElementById('imagem').files[0])
-            dados.append('imagem_old', document.getElementById('txt_nome_imagem').value)
-            // imagem old
+            dados.append('imagem_old', document.getElementById('txt_imagem').value)
+            
             $.ajax({
-            type: 'post',
+            type: 'POST',
             processData: false,
             contentType: false,
-            dataType: 'json',
+            dataType: 'JSON',
             url: 'src/cadastrar/cadastrarEpi.php',
             data: dados,
             success: function(retorno) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
-                    window.location.reload()
+                    fecharModal()
+                    document.querySelector('form').reset()
+                    listarEpi()
                 }else{
                     alert(retorno.mensagem)
                 }
-
-                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -196,12 +196,12 @@ if (!isset($_SESSION['logado'])) {
             success: function(retorno) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
-                    window.location.reload()
+                    fecharModal()
+                    document.querySelector('form').reset()
+                    listarEmprestimo()
                 }else{
                     alert(retorno.mensagem)
                 }
-
-                document.querySelector('form').reset()
             },
             error: function(erro) {
                 alert('Ocorreu um problema técnico, entre em contato com o suporte')
@@ -230,6 +230,10 @@ if (!isset($_SESSION['logado'])) {
 
     function abrirModal() {
         $('#adicionar').modal('show')
+    }
+
+    function fecharModal(){
+        $('#adicionar').modal('hide')
     }
 
     document.addEventListener('DOMContentLoaded', () => {
