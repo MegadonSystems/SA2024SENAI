@@ -24,11 +24,11 @@
     <div class="modal-content">
       <form id="form_produto" onsubmit="salvar()">
         <div class="modal-header">
-          <h4 class="modal-title">Cadastro de Usuário</h4>
+          <h4 id="titulo" class="modal-title">Cadastro de Usuário</h4>
           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body">
-          <input type="hidden" id="txt_id" value="novo">
+          <input type="hidden" id="txt_id" value="NOVO">
           <input type="hidden" id="txt_nome_imagem">
 
           <div class="form-group">
@@ -67,6 +67,7 @@
         console.log(retorno)
         if (retorno['status'] == 'sucesso') {
           var tabelaUsuarios = document.querySelector('#tabela-usuarios tbody');
+          tabelaUsuarios.innerHTML = '';
           var usuarios = retorno['dados'];
           usuarios.forEach(function(usuario) {
             var linha = document.createElement('tr');
@@ -104,16 +105,20 @@
         dataType: 'json',
         url: 'src/carregar/carregarUsuario.php',
         data: {
-            'id_usuario': idUsuario
+            'id': idUsuario
         },
         success: function(retorno) {
-            if (retorno['status'] == 'sucesso') {
+            if (retorno['status'] == 1) {
                 // Imprimir dados do usuário no modal
 
-                document.getElementById('id').value = retorno['dados']['id_usuario']
+                document.getElementById('txt_id').value = retorno['dados']['id_usuario']
                 document.getElementById('nome').value = retorno['dados']['nome']
                 document.getElementById('email').value = retorno['dados']['email']
                 document.getElementById('senha').value = retorno['dados']['senha']
+                
+                document.getElementById('titulo').innerHTML = 'Cadastro do Usuário'
+
+                abrirModal()
 
             } else {
                 alert(retorno['mensagem'])
@@ -136,15 +141,15 @@
             dataType: 'json',
             url: 'src/excluir/excluirUsuario.php',
             data: {
-                'id_usuario': idUsuario
+                'id': idUsuario
             },
             success: function(retorno) {
                 alert(retorno['mensagem'])
 
-                if (retorno['status'] == 'sucesso') {
+                if (retorno['status'] == 1) {
 
                     listarUsuario(); //Atualizar a listagem de usuários
-                    window.location.reload()
+                    // window.location.reload()
                 }
             },
             error: function(erro) {

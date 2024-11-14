@@ -17,7 +17,7 @@ $formulario['imagem_new'] = isset($_FILES['imagem_new'])? $_FILES['imagem_new'] 
 $formulario['imagem_old'] = isset($_POST['imagem_old'])? $_POST['imagem_old'] : '';
 
 
-//Enviando a imagem pro servido
+//Enviando a imagem pro servido e valida a img
 if (isset($formulario['imagem_new']) && $formulario['imagem_new']['size'] > 0) {
     $nome_img = uniqid() . '.jpg';
     move_uploaded_file($formulario['imagem_new']['tmp_name'], '../upload/imgEpis/' . $nome_img);
@@ -26,7 +26,7 @@ if (isset($formulario['imagem_new']) && $formulario['imagem_new']['size'] > 0) {
     $formulario['imagem_old'] = isset($_POST['imagem_old']) ? $_POST['imagem_old'] : '';
 
     if (empty($formulario['imagem_old'])) {
-        echo json_encode(['codigo' => 2, 'mensagem' => 'Existem campo vázios. Verifique!']);
+        echo json_encode(['codigo' => 2, 'mensagem' => 'Existem campo vazios. Verifique!']);
         exit;
     }else{
         $formulario['imagem'] = $formulario['imagem_old'];

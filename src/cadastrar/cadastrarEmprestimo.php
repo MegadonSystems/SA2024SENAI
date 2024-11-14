@@ -1,8 +1,8 @@
 <?php
-
 include_once '../class/BancoDeDados.php';
 
 $formulario['descricao'] = isset($_POST['descricao'])? $_POST['descricao'] : '';
+$formulario['quantidade'] = isset($_POST['quantidade'])? $_POST['quantidade'] : '';
 $formulario['data_retirada'] = isset($_POST['data_retirada'])? $_POST['data_retirada'] : '';
 $formulario['id_epi'] = isset($_POST['id_epi']) ? $_POST['id_epi'] : '';
 $formulario['id_colaborador'] = isset($_POST['id_colaborador']) ? $_POST['id_colaborador'] : '';
@@ -12,18 +12,39 @@ if(in_array('', $formulario)){
     echo json_encode(['codigo' => 2, 'mensagem' => 'Existem campos vazios! Verifique']);
     exit;
 }
-
 $formulario['data_devolucao'] = isset($_POST['data_devolucao'])? $_POST['data_devolucao'] : '';
+
 
 try{
     $banco = new BancoDeDados;
 
-    $sql = 'INSERT INTO emprestimos (status, descricao, data_retirada, data_devolucao, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?, ?)';
-    $parametros = ['1', $formulario['descricao'], $formulario['data_retirada'], $formulario['data_devolucao'], $formulario['id_epi'], $formulario['id_colaborador']];
+    //Validando a quantidade de estoque da epi
+    $sql = 'SELECT qtd_estoque FRom epis WHERE id_epi = ?';
+    $parametros = [$formulario['id_epi']];
+    $qtdEpi = $banco->consultar($sql, $parametros);
+    $qtdEpi = $qtdEpi['qtd_estoque'];
 
+    $prevQtdEpi = $qtdEpi - $formulario['quantidade'];
+
+    if($qtdEpi < 0 || $prevQtdEpi < 0){
+        echo json_encode(['codigo' => 2, 'mensagem' => 'Não há estoque suficiente para realizar esse emprestimo']);
+        exit;
+    }
+
+
+    $banco->iniciarTransacao();
+
+    $sql = 'INSERT INTO emprestimos (status, descricao, quantidade, data_retirada, data_devolucao, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    $parametros = ['1', $formulario['descricao'], $formulario['quantidade'], $formulario['data_retirada'], $formulario['data_devolucao'], $formulario['id_epi'], $formulario['id_colaborador']];
     $banco->executarComando($sql, $parametros);
 
+    $sql = 'UPDATE epis set qtd_estoque = qtd_estoque - ? WHERE id_epi = ?';
+    $parametros = [$formulario['quantidade'], $formulario['id_epi']];
+    $banco->executarComando($sql, $parametros);
+
+    $banco->confirmarTransacao();
     echo json_encode(['codigo' => 1, 'mensagem' => 'Emprestimo cadastrado com sucesso!']);
 }catch(PDOException $erro){
+    $banco->voltarTransacao();
     echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
 }

@@ -22,36 +22,21 @@ if (isset($_SESSION['logado'])) {
 </head>
 
 <body>
-        <img src="assets/img/epi_1.jpg" id="background" alt="">
-        <div class="box">
-            <form onsubmit="enviarLogin()">
-                <div class="orgLogin">
-                    <h1>Entrar no sistema</h1>
-                </div>
+    <div class="box">
+        <form onsubmit="enviarLogin()">
+            <div class="inputContainer">
+                <input type="text" id="txt_email" required />
+                <label>Email</label>
+            </div>
 
-                <div class="inputContainer">
-                    <input type="email" id="txt_email" required />
-                    <label>Email</label>
-                </div>
+            <div class="inputContainer">
+                <input type="text" id="txt_senha" required />
+                <label>Senha</label>
+            </div>
 
-                <div class="inputContainer">
-                    <input type="password" id="txt_senha" required />
-                    <label>Senha</label>
-                </div>
-
-                <button type="button" class="btn" onclick="enviarLogin()">Login</button>
-
-                <div class="orgLogin" id="eSenha">
-                    <h3>
-                        <a href="" onclick="alertLogin()">Esqueceu a senha?</a>
-                    </h3>
-                </div>
-            </form>
-        </div>
-
-        <footer>
-            <img src="assets/img/senai-logo-1.png" alt="" id="senai">
-        </footer>
+            <button type="button" class="btn" onclick="enviarLogin()">Fazer Login</button>
+        </form>
+    </div>
 </body>
 
 <script>
