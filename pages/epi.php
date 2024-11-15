@@ -30,13 +30,8 @@
           </div>
           <div class="modal-body">
             <input type="hidden" id="txt_id" value="NOVO">
-<<<<<<< Updated upstream
-            <input type="hidden" id="txt_nome_imagem">
-
-=======
             <input type="hidden" id="txt_imagem">
             
->>>>>>> Stashed changes
             <div class="form-group">
               <label>Nome</label>
               <input type="text" class="form-control" id="nome" required maxlength="255">
@@ -93,10 +88,6 @@
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-<<<<<<< Updated upstream
-              let codBar = epi['codigo_barra'] ? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>` : 'Não Gerado'
-              let imagem = epi['imagem'] ? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>` : 'Não Gerada'
-=======
               let codBar = epi['codigo_barra'] != 1 ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver</a>`: 'Não Gerado'
               let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>`: 'Não Disponivel'
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
@@ -117,7 +108,6 @@
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
               // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
 
->>>>>>> Stashed changes
 
               var linha = document.createElement('tr');
               linha.innerHTML =
@@ -157,11 +147,7 @@
         dataType: 'json',
         url: 'src/carregar/carregarEpi.php',
         data: {
-<<<<<<< Updated upstream
-          'id_epi': idEpi
-=======
             'id': idEpi
->>>>>>> Stashed changes
         },
         success: function(retorno) {
           if (retorno['status'] == 'sucesso') {
@@ -189,16 +175,6 @@
       if (confirmar) {
         //Requisição assincrona ajax
         $.ajax({
-<<<<<<< Updated upstream
-          type: 'post',
-          dataType: 'json',
-          url: 'src/excluir/excluirEpi.php',
-          data: {
-            'id_epi': idEpi
-          },
-          success: function(retorno) {
-            alert(retorno['mensagem'])
-=======
             type: 'post',
             dataType: 'json',
             url: 'src/excluir/excluirEpi.php',
@@ -207,26 +183,16 @@
             },
             success: function(retorno) {
                 alert(retorno['mensagem'])
->>>>>>> Stashed changes
 
             if (retorno['status'] == 'sucesso') {
 
-<<<<<<< Updated upstream
-              listarEpi(); //Atualizar a listagem de EPI's
-              window.location.reload()
-=======
                     listarEpi(); //Atualizar a listagem de EPI's
                     // window.location.reload()
                 }
             },
             error: function(erro) {
                 alert('Ocorreu um erro na requisição: ' + erro);
->>>>>>> Stashed changes
             }
-          },
-          error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
-          }
         })
       }
     }
@@ -241,20 +207,6 @@
         },
         success: function(retorno) {
 
-<<<<<<< Updated upstream
-          if (retorno['codigo'] == '1') {
-            alert(retorno['mensagem'])
-
-            listarEpi(); //Atualizar a listagem de EPI's
-            // window.location.reload()
-          }
-        },
-        error: function(erro) {
-          alert('Ocorreu um erro na requisição: ' + erro);
-        }
-      })
-    }
-=======
                 if (retorno['status'] == 1) {
                   alert(retorno['mensagem'])
                     
@@ -267,5 +219,4 @@
             }
         })
   }
->>>>>>> Stashed changes
   </script>
