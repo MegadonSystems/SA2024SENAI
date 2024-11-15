@@ -11,9 +11,10 @@ if (empty($id)) {
 try{
     $banco = new BancoDeDados;
 
+    $codigo = uniqid();
 
-    $sql = 'UPDATE epis SET codigo_barra = "2" WHERE id_epi = ?';
-    $parametros = [$id];
+    $sql = 'UPDATE epis SET codigo_barra = ? WHERE id_epi = ?';
+    $parametros = [$codigo, $id];
 
     $banco->executarComando($sql, $parametros);
 

@@ -27,5 +27,5 @@ try{
     echo json_encode(['status' => 1, 'mensagem' => 'EPI removido com sucesso!']);
 
 }catch(PDOException $erro){
-    echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 3, 'mensagem' => $erro->getMessage()]);
 }
