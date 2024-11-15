@@ -23,15 +23,15 @@
   <div id="adicionar" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id="form_produto">
+        <form id="form_epi">
           <div class="modal-header">
-            <h4 class="modal-title">Cadastro de EPI</h4>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">EPI</h4>
+            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <input type="hidden" id="txt_id" value="NOVO">
             <input type="hidden" id="txt_nome_imagem">
-            
+
             <div class="form-group">
               <label>Nome</label>
               <input type="text" class="form-control" id="nome" required maxlength="255">
@@ -63,6 +63,17 @@
       listarEpi();
     }
 
+    $(document).ready(function() {
+      // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
+      $(document).click(function(event) {
+        var $target = $(event.target);
+        // Verifique se o clique foi fora do modal
+        if (!$target.closest('.modal').length && !$target.is('.modal')) {
+          // Resetar o formulário
+          $('form')[0].reset();
+        }
+      });
+    });
 
     function listarEpi() {
       $.ajax({
@@ -76,26 +87,8 @@
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['codigo_barra']? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>`: 'Não Gerado'
-              let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>`: 'Não Gerada'
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-
+              let codBar = epi['codigo_barra'] ? `<a href="src/upload/codBar/${epi['codigo_barra']}" target="_blank">Ver</a>` : 'Não Gerado'
+              let imagem = epi['imagem'] ? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>` : 'Não Gerada'
 
               var linha = document.createElement('tr');
               linha.innerHTML =
@@ -129,82 +122,82 @@
       });
     }
 
-    function carregarEpi(idEpi){
+    function carregarEpi(idEpi) {
       $.ajax({
         type: 'post',
         dataType: 'json',
         url: 'src/carregar/carregarEpi.php',
         data: {
-            'id_epi': idEpi
+          'id_epi': idEpi
         },
         success: function(retorno) {
-            if (retorno['status'] == 'sucesso') {
-                // Imprimir dados do usuário no modal
+          if (retorno['status'] == 'sucesso') {
+            // Imprimir dados do usuário no modal
 
-                document.getElementById('id').value = retorno['dados']['id_epi']
-                document.getElementById('nome').value = retorno['dados']['nome']
-                document.getElementById('estoque').value = retorno['dados']['qtd_estoque']
-                document.getElementById('imagem').value = retorno['dados']['imagem']
+            document.getElementById('id').value = retorno['dados']['id_epi']
+            document.getElementById('nome').value = retorno['dados']['nome']
+            document.getElementById('estoque').value = retorno['dados']['qtd_estoque']
+            document.getElementById('imagem').value = retorno['dados']['imagem']
 
-            } else {
-                alert(retorno['mensagem'])
-            }
+          } else {
+            alert(retorno['mensagem'])
+          }
         },
         error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
+          alert('Ocorreu um erro na requisição: ' + erro);
         }
-    })
+      })
     }
 
     function excluirEpi(idEpi) {
-    //Confirma se o usuário quer excluir ou n
-    let confirmar = confirm("Deseja realmente excluir esse EPI?");
+      //Confirma se o usuário quer excluir ou n
+      let confirmar = confirm("Deseja realmente excluir esse EPI?");
 
-    if (confirmar) {
+      if (confirmar) {
         //Requisição assincrona ajax
         $.ajax({
-            type: 'post',
-            dataType: 'json',
-            url: 'src/excluir/excluirEpi.php',
-            data: {
-                'id_epi': idEpi
-            },
-            success: function(retorno) {
-                alert(retorno['mensagem'])
+          type: 'post',
+          dataType: 'json',
+          url: 'src/excluir/excluirEpi.php',
+          data: {
+            'id_epi': idEpi
+          },
+          success: function(retorno) {
+            alert(retorno['mensagem'])
 
-                if (retorno['status'] == 'sucesso') {
+            if (retorno['status'] == 'sucesso') {
 
-                    listarEpi(); //Atualizar a listagem de EPI's
-                    window.location.reload()
-                }
-            },
-            error: function(erro) {
-                alert('Ocorreu um erro na requisição: ' + erro);
+              listarEpi(); //Atualizar a listagem de EPI's
+              window.location.reload()
             }
+          },
+          error: function(erro) {
+            alert('Ocorreu um erro na requisição: ' + erro);
+          }
         })
+      }
     }
-}  
 
-  function gerarCod(idEpi){
-    $.ajax({
-            type: 'post',
-            dataType: 'json',
-            url: 'src/gerarCodBar.php',
-            data: {
-                'id': idEpi
-            },
-            success: function(retorno) {
+    function gerarCod(idEpi) {
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: 'src/gerarCodBar.php',
+        data: {
+          'id': idEpi
+        },
+        success: function(retorno) {
 
-                if (retorno['codigo'] == '1') {
-                  alert(retorno['mensagem'])
-                    
-                  listarEpi(); //Atualizar a listagem de EPI's
-                    // window.location.reload()
-                }
-            },
-            error: function(erro) {
-                alert('Ocorreu um erro na requisição: ' + erro);
-            }
-        })
-  }
+          if (retorno['codigo'] == '1') {
+            alert(retorno['mensagem'])
+
+            listarEpi(); //Atualizar a listagem de EPI's
+            // window.location.reload()
+          }
+        },
+        error: function(erro) {
+          alert('Ocorreu um erro na requisição: ' + erro);
+        }
+      })
+    }
   </script>

@@ -107,7 +107,6 @@ if (!isset($_SESSION['logado'])) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
                     fecharModal()
-                    document.querySelector('form').reset()
                     listarUsuario()
                 }else{
                     alert(retorno.mensagem)
@@ -135,7 +134,6 @@ if (!isset($_SESSION['logado'])) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
                     fecharModal()
-                    document.querySelector('form').reset()
                     listarColaborador()
                 }else{
                     alert(retorno.mensagem)
@@ -167,7 +165,6 @@ if (!isset($_SESSION['logado'])) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
                     fecharModal()
-                    document.querySelector('form').reset()
                     listarEpi()
                 }else{
                     alert(retorno.mensagem)
@@ -197,7 +194,6 @@ if (!isset($_SESSION['logado'])) {
                 if(retorno.status === 1){
                     alert(retorno.mensagem)
                     fecharModal()
-                    document.querySelector('form').reset()
                     listarEmprestimo()
                 }else{
                     alert(retorno.mensagem)

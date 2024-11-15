@@ -22,10 +22,10 @@
   <div id="adicionar" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id="form_produto" onsubmit="salvar()">
+        <form id="form_colaborador" onsubmit="salvar()">
           <div class="modal-header">
-            <h4 class="modal-title">Cadastro de Colaborador</h4>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Colaborador</h4>
+            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <input type="hidden" id="txt_id" value="NOVO">
@@ -56,6 +56,18 @@
   </div>
 
   <script>
+
+$(document).ready(function() {
+    // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
+    $(document).click(function(event) {
+        var $target = $(event.target);
+        // Verifique se o clique foi fora do modal
+        if (!$target.closest('.modal').length && !$target.is('.modal')) {
+            // Resetar o formulário
+            $('form')[0].reset();
+        }
+    });
+});
 
     $(function (){
       $('#cpf').mask('000.000.000-00')      

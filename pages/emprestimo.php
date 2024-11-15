@@ -24,10 +24,10 @@
        <div id="adicionar" class="modal fade">
            <div class="modal-dialog">
                <div class="modal-content">
-                   <form id="form_produto">
+                   <form id="form_emprestimo">
                        <div class="modal-header">
-                           <h4 class="modal-title">Cadastro de Empréstimo</h4>
-                           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                           <h4 class="modal-title">Empréstimo</h4>
+                           <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                        </div>
                        <div class="modal-body">
                            <input type="hidden" id="txt_id" value="novo">
@@ -87,6 +87,18 @@
                listarEmprestimo();
                listarFK();
            }
+
+           $(document).ready(function() {
+    // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
+    $(document).click(function(event) {
+        var $target = $(event.target);
+        // Verifique se o clique foi fora do modal
+        if (!$target.closest('.modal').length && !$target.is('.modal')) {
+            // Resetar o formulário
+            $('form')[0].reset();
+        }
+    });
+});
 
            function listarFK() {
                $.ajax({
