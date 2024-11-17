@@ -12,8 +12,14 @@ if(in_array('', $formulario)){
     echo json_encode(['status' => 2, 'mensagem' => 'Existem campos vazios! Verifique']);
     exit;
 }
+
 $formulario['data_devolucao'] = isset($_POST['data_devolucao'])? $_POST['data_devolucao'] : '';
 
+if(empty($formulario['data_devolucao'])){
+    $status = 1;
+}else{
+    $status = 2;
+}
 
 try{
     $banco = new BancoDeDados;
@@ -27,24 +33,26 @@ try{
     $prevQtdEpi = $qtdEpi - $formulario['quantidade'];
 
     if($qtdEpi < 0 || $prevQtdEpi < 0){
-        echo json_encode(['status' => 2, 'mensagem' => 'Não há estoque suficiente para realizar esse emprestimo']);
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Não há estoque suficiente para realizar esse emprestimo']);
         exit;
     }
 
 
     $banco->iniciarTransacao();
 
-    $sql = 'INSERT INTO emprestimos (descricao, quantidade, data_retirada, data_devolucao, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?, ?)';
-    $parametros = [$formulario['descricao'], $formulario['quantidade'], $formulario['data_retirada'], $formulario['data_devolucao'], $formulario['id_epi'], $formulario['id_colaborador']];
+    $sql = 'INSERT INTO emprestimos (status, descricao, quantidade, data_retirada, data_devolucao, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    $parametros = [$status, $formulario['descricao'], $formulario['quantidade'], $formulario['data_retirada'], $formulario['data_devolucao'], $formulario['id_epi'], $formulario['id_colaborador']];
     $banco->executarComando($sql, $parametros);
 
-    $sql = 'UPDATE epis set qtd_estoque = qtd_estoque - ? WHERE id_epi = ?';
-    $parametros = [$formulario['quantidade'], $formulario['id_epi']];
-    $banco->executarComando($sql, $parametros);
+    if($status == 1){
+        $sql = 'UPDATE epis set qtd_estoque = qtd_estoque - ? WHERE id_epi = ?';
+        $parametros = [$formulario['quantidade'], $formulario['id_epi']];
+        $banco->executarComando($sql, $parametros);
+    }
 
     $banco->confirmarTransacao();
-    echo json_encode(['status' => 1, 'mensagem' => 'Emprestimo cadastrado com sucesso!']);
+    echo json_encode(['status' => 'sucesso', 'mensagem' => 'Emprestimo cadastrado com sucesso!']);
 }catch(PDOException $erro){
     $banco->voltarTransacao();
-    echo json_encode(['status' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
 }

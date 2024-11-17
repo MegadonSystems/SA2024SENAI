@@ -55,9 +55,7 @@ if (isset($_SESSION['logado'])) {
 </body>
 
 <script>
-    $('form').submit(() => {
-        return false
-    })
+    $('form').submit(() => {return false })
 
     function alertLogin() {
         alert('Contate o suporte para redefinir sua senha!')
@@ -66,21 +64,18 @@ if (isset($_SESSION['logado'])) {
     function enviarLogin() {
         $.ajax({
             type: 'POST',
-            dataType: 'json',
+            dataType: 'JSON',
             url: 'src/login.php',
             data: {
                 'email': document.getElementById('txt_email').value,
                 'senha': document.getElementById('txt_senha').value
             },
             success: function(retorno) {
-                if (retorno.codigo === 1) {
+                if (retorno.status === 'sucesso') {
                     window.location.reload()
                     alert('Login efetuado com sucesso!')
-                } else if (retorno.codigo === 2) {
+                } else{
                     alert(retorno.mensagem)
-                } else if (retorno.codigo === 3) {
-                    alert('Ocorreu um problema técnico, reinicie a página ou volte mais tarde, caso não resolver contate o suporte')
-                    console.log(retorno.mensagem)
                 }
             },
             error: function(erro) {

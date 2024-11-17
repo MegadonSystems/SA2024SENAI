@@ -76,38 +76,18 @@
     });
 
     function listarEpi() {
-      alert("Listando")
       $.ajax({
         type: 'post',
         dataType: 'json',
         url: 'src/selecionar/selecionarEPI.php',
         success: function(retorno) {
-          console.log(retorno)
           if (retorno['status'] == 'sucesso') {
             var tabelaEpis = document.querySelector('#tabela-epis tbody');
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['codigo_barra'] != 1 ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver</a>`: 'Não Gerado'
+              let codBar = epi['codigo_barra'] != '' ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver</a>`: 'Não Gerado'
               let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>`: 'Não Disponivel'
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-              // PRECISA FAZER UM <a> NA COLUNA IMAGEM QUE NEM TEM NO CÓDIGO DE BARRAS, MAS QUE VAI PRA IMAGEM CRIADA
-
 
               var linha = document.createElement('tr');
               linha.innerHTML =
@@ -153,10 +133,13 @@
           if (retorno['status'] == 'sucesso') {
             // Imprimir dados do usuário no modal
 
-            document.getElementById('id').value = retorno['dados']['id_epi']
+            document.getElementById('txt_id').value = retorno['dados']['id_epi']
             document.getElementById('nome').value = retorno['dados']['nome']
+            document.getElementById('descricao').value = retorno['dados']['descricao']
             document.getElementById('estoque').value = retorno['dados']['qtd_estoque']
-            document.getElementById('imagem').value = retorno['dados']['imagem']
+            document.getElementById('txt_imagem').value = retorno['dados']['imagem']
+
+            abrirModal()
 
           } else {
             alert(retorno['mensagem'])
@@ -207,11 +190,11 @@
         },
         success: function(retorno) {
 
-                if (retorno['status'] == 1) {
+                if (retorno['status'] == 'sucesso') {
                   alert(retorno['mensagem'])
                     
                   listarEpi(); //Atualizar a listagem de EPI's
-                    // window.location.reload()
+                  // window.location.reload()
                 }
             },
             error: function(erro) {

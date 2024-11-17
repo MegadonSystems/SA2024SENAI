@@ -3,7 +3,7 @@ require_once '../class/BancoDeDados.php';
 
 $id = isset($_POST['id'])? $_POST['id'] : '';
 if(empty($id)){
-    echo json_encode(['status' => 2, 'mensagem' => 'Não foi possivel obter o id!']);
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Não foi possivel obter o id!']);
     exit;
 }
 
@@ -16,8 +16,12 @@ try{
     $banco->executarComando($sql, $parametros);
 
 
-    echo json_encode(['status' => 1, 'mensagem' => 'Colaborador removido com sucesso!']);
+    echo json_encode(['status' => 'sucesso', 'mensagem' => 'Colaborador removido com sucesso!']);
 
 }catch(PDOException $erro){
-    echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
+    if($erro->getCode() == 23000) {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Não é possível excluir esse colaborador, pois ele está vinculado ao um emprestimo']);
+    }else{
+        echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
+    }
 }

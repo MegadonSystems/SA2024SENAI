@@ -6,7 +6,7 @@ $id = isset($_POST['id'])? $_POST['id'] : '';
 
 if(empty($id)){
     $resposta = [
-        'status' => 2,
+        'status' => 'erro',
         'mensagem' => 'Não foi possível obter o id!'
     ];
     echo json_encode($resposta);
@@ -29,14 +29,14 @@ try {
     // para passar os valores no formulário
 
     $resposta = [
-        'status' => 1,
+        'status' => 'sucesso',
         'dados' => $dados
     ];
     echo json_encode($resposta);
     }
     else{
         $resposta = [
-            'status' => 2,
+            'status' => 'erro',
             'mensagem' => 'Nenhum usuario cadastrado!'
         ];
     echo json_encode($resposta); 
@@ -44,7 +44,7 @@ try {
 
 } catch (PDOException $erro) {
     $resposta = [
-        'status' => 3,
+        'status' => 'erro',
         'mensagem' => "Houve uma excessão no banco de dados: " + $erro->getMessage()
     ];
     echo json_encode($resposta);

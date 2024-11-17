@@ -4,7 +4,7 @@ $email = isset($_POST['email']) ?   $_POST['email'] : '';
 $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
 
 if (empty($email) || empty($senha)) {
-    echo json_encode(['codigo' => 2, 'mensagem' => 'Por favor preencha todos os campos!']);
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Por favor preencha todos os campos!']);
     exit;
 }
 
@@ -24,10 +24,10 @@ try {
         $_SESSION['id'] = $dados['id_usuario'];
         $_SESSION['nome'] = $dados['nome'];
 
-        echo json_encode(['codigo' => 1]);
+        echo json_encode(['status' => 'sucesso']);
     } else {
-        echo json_encode(['codigo' => 2, 'mensagem' => 'Dados incorretos! Por favor, verifique']);
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Dados incorretos! Por favor, verifique']);
     }
 } catch (PDOException $erro) {
-    echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
 }

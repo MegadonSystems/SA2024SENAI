@@ -83,18 +83,20 @@ $(document).ready(function() {
         dataType: 'json',
         url: 'src/selecionar/selecionarColaboradores.php',
         success: function(retorno) {
-          console.log(retorno)
           if (retorno['status'] == 'sucesso') {
             var tabelaColaboradores = document.querySelector('#tabela-colaboradores tbody');
             tabelaColaboradores.innerHTML = ''
+
             var colaboradores = retorno['dados'];
+
             colaboradores.forEach(function(colaborador) {
-              var dataNascimento = new Date(colaborador['data_nascimento']);
-              var dataFormatada = dataNascimento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric'});
+              // var dataNascimento = new Date(colaborador['data_nascimento']);
+              // var dataFormatada = dataNascimento.toLocaleDateString('pt-BR');
+
+              // Uma solução loucura para arrumar 🤪
+              let dataNascimento = colaborador['data_nascimento']
+              let dataFormatada = dataNascimento.split('-').reverse().join('/')
               
-              console.log(colaborador['data_nascimento'])
-              console.log(dataNascimento)
-              console.log(dataFormatada)
 
               var linha = document.createElement('tr');
               linha.innerHTML =
@@ -135,7 +137,7 @@ $(document).ready(function() {
             'id': idColaborador
         },
         success: function(retorno) {
-            if (retorno['status'] == 1) {
+            if (retorno['status'] == 'sucesso') {
                 // Imprimir dados do colaborador no modal
                 document.getElementById('txt_id').value = retorno['dados']['id_colaborador']
                 document.getElementById('nome').value = retorno['dados']['nome']
@@ -171,7 +173,7 @@ $(document).ready(function() {
             success: function(retorno) {
                 alert(retorno['mensagem'])
 
-                if (retorno['status'] == 1) {
+                if (retorno['status'] == 'sucesso') {
 
                     listarColaborador();
                     // window.location.reload()

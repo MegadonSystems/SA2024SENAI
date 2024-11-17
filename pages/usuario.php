@@ -119,15 +119,13 @@
             'id': idUsuario
         },
         success: function(retorno) {
-            if (retorno['status'] == 1) {
+            if (retorno['status'] == 'sucesso') {
                 // Imprimir dados do usuário no modal
 
                 document.getElementById('txt_id').value = retorno['dados']['id_usuario']
                 document.getElementById('nome').value = retorno['dados']['nome']
                 document.getElementById('email').value = retorno['dados']['email']
                 document.getElementById('senha').value = retorno['dados']['senha']
-                
-                document.getElementById('titulo').innerHTML = 'Cadastro do Usuário'
 
                 abrirModal()
 
@@ -157,7 +155,7 @@
             success: function(retorno) {
                 alert(retorno['mensagem'])
 
-                if (retorno['status'] == 1) {
+                if (retorno['status'] == 'sucesso') {
 
                     listarUsuario(); //Atualizar a listagem de usuários
                     // window.location.reload()

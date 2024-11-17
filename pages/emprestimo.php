@@ -142,7 +142,9 @@
                        if (retorno['status'] == 'sucesso') {
                            var tabelaEmprestimos = document.querySelector('#tabela-emprestimos tbody');
                            tabelaEmprestimos.innerHTML = ''
+
                            var emprestimos = retorno['dados'];
+
                            emprestimos.forEach(function(emprestimo) {
                                if (emprestimo.status == 1) {
                                    var status = 'Ativo'
@@ -150,12 +152,20 @@
                                    var status = 'Concluído'
                                }
 
-                               var dataR = new Date(emprestimo['data_retirada']);
-                               var rFormatada = dataR.toLocaleDateString('pt-BR');
+                            //    var dataR = new Date(emprestimo['data_retirada']);
+                            //    var rFormatada = dataR.toLocaleDateString('pt-BR');
+
+                                // Uma solução loucura para arrumar 🤪
+                                let dataR = emprestimo['data_retirada']
+                                let rFormatada = dataR.split('-').reverse().join('/')
 
                                if(emprestimo['data_devolucao'] !== '0000-00-00'){
-                                    var dataD = new Date(emprestimo['data_devolucao']);
-                                    var dFormatada = dataD.toLocaleDateString('pt-BR');
+                                    // var dataD = new Date(emprestimo['data_devolucao']);
+                                    // var dFormatada = dataD.toLocaleDateString('pt-BR');
+
+                                    // Uma solução loucura para arrumar 🤪
+                                    var dataD = emprestimo['data_devolucao']
+                                    var dFormatada = dataD.split('-').reverse().join('/')
                                }else{
                                     var dFormatada = 'Não Devolvido';
                                }
@@ -171,10 +181,10 @@
                                 <td style="width:120px">${status}</td>
                                 <td style="width:130px">${rFormatada}</td>
                                 <td style="width:150px">${dFormatada}</td>
-                                <td style="width:240px">${emprestimo['id_colaborador']}</td>
-                                <td style="width:190px">${emprestimo['id_epi']}</td>
+                                <td style="width:240px">${emprestimo['colaborador']}</td>
+                                <td style="width:190px">${emprestimo['epi']}</td>
                                 <td style="width:150px; border: none" class="orgAcao">  
-                                <a class='acao' href='#' onclick='devolverEPI(${emprestimo['id_emprestimo']}, ${emprestimo['statusE']} )' title='Devolver EPI' style='margin-left:43%'> <i class='bi bi-arrow-left-square-fill'></i> </a>
+                                <a class='acao' href='#' onclick='devolverEPI(${emprestimo['id_emprestimo']}, ${emprestimo['status']} )' title='Devolver EPI' style='margin-left:43%'> <i class='bi bi-arrow-left-square-fill'></i> </a>
                                 </td>
                                `
 
@@ -194,7 +204,7 @@
                });
            }
 
-           function devolverEPI(id, status) {
+           function devolverEPI(id, status, epi) {
                console.log(status)
                if (status == 2) {
                    alert('Empréstimo já foi finalizado, impossível devolver EPI!')

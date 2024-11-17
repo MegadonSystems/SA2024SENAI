@@ -9,7 +9,7 @@ $senha = isset($_POST['senha'])? $_POST['senha'] : '';
 
 
 if(empty($nome) || empty($email) || empty($senha)){
-    echo json_encode(['status' => 2, 'mensagem' => 'Preencha todos os campos! Verifique']);
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Preencha todos os campos! Verifique']);
     exit;
 }
 
@@ -22,16 +22,16 @@ try{
 
         $banco->executarComando($sql, $parametros);
 
-        echo json_encode(['status' => 1, 'mensagem' => 'Usuário cadastrado com sucesso!']);
+        echo json_encode(['status' => 'sucesso', 'mensagem' => 'Usuário cadastrado com sucesso!']);
     }else{
         $sql = 'UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id_usuario = ?';
         $parametros = [$nome, $email, $senha, $id];
 
         $banco->executarComando($sql, $parametros);
 
-        echo json_encode(['status' => 1, 'mensagem' => 'Usuário atualizado com sucesso!']);
+        echo json_encode(['status' => 'sucesso', 'mensagem' => 'Usuário atualizado com sucesso!']);
     }
 
 }catch(PDOException $erro){
-    echo json_encode(['status' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
 }

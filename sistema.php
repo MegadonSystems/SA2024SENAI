@@ -87,6 +87,7 @@ if (!isset($_SESSION['logado'])) {
 <script>
     $('form').submit(() => {return false})
 
+
     function salvar() {
 
         const location = new URLSearchParams(window.location.search)
@@ -94,8 +95,8 @@ if (!isset($_SESSION['logado'])) {
         
         if (tela === "usuario") {
             $.ajax({
-            type: 'post',
-            dataType: 'json',
+            type: 'POST',
+            dataType: 'JSON',
             url: 'src/cadastrar/cadastrarUsuario.php',
             data: {
                 'id': document.getElementById('txt_id').value,
@@ -104,7 +105,7 @@ if (!isset($_SESSION['logado'])) {
                 'senha': document.getElementById('senha').value
             },
             success: function(retorno) {
-                if(retorno.status === 1){
+                if(retorno.status === 'sucesso'){
                     alert(retorno.mensagem)
                     fecharModal()
                     listarUsuario()
@@ -131,7 +132,7 @@ if (!isset($_SESSION['logado'])) {
                 'data_nascimento': document.getElementById('data_nascimento').value,
             },
             success: function(retorno) {
-                if(retorno.status === 1){
+                if(retorno.status === 'sucesso'){
                     alert(retorno.mensagem)
                     fecharModal()
                     listarColaborador()
@@ -162,7 +163,7 @@ if (!isset($_SESSION['logado'])) {
             url: 'src/cadastrar/cadastrarEpi.php',
             data: dados,
             success: function(retorno) {
-                if(retorno.status === 1){
+                if(retorno.status === 'sucesso'){
                     alert(retorno.mensagem)
                     fecharModal()
                     listarEpi()
@@ -191,7 +192,7 @@ if (!isset($_SESSION['logado'])) {
                 'id_epi': document.getElementById('fk_epi').value
             },
             success: function(retorno) {
-                if(retorno.status === 1){
+                if(retorno.status === 'sucesso'){
                     alert(retorno.mensagem)
                     fecharModal()
                     listarEmprestimo()

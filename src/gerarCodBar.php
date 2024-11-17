@@ -4,7 +4,7 @@ include_once 'class/BancoDeDados.php';
 // Validação
 $id = isset($_POST['id']) ? $_POST['id'] : '';
 if (empty($id)) {
-    echo json_encode(['codigo' => 2, 'mensagem' => 'ID não encontrado!']);
+    echo json_encode(['status' => 'erro', 'mensagem' => 'ID não encontrado!']);
     exit;
 }
 
@@ -18,7 +18,7 @@ try{
 
     $banco->executarComando($sql, $parametros);
 
-    echo json_encode(['codigo' => 1, 'mensagem' => 'Código de Barras gerado com sucesso!']);
+    echo json_encode(['status' => 'sucesso', 'mensagem' => 'Código de Barras gerado com sucesso!']);
 }catch(PDOException $erro){
-    echo json_encode(['codigo' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
 }

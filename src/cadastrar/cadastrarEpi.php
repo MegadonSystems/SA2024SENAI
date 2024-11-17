@@ -9,13 +9,12 @@ $formulario['estoque'] = isset($_POST['estoque'])? $_POST['estoque'] : '';
 
 //Validação dos campos obrigatorios
 if(in_array('', $formulario)){
-    echo json_encode(['status' => 2, 'mensagem' => 'Existem campos vazios! Verifique']);
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Existem campos vazios! Verifique']);
     exit;
 }
 
 $formulario['imagem_new'] = isset($_FILES['imagem_new'])? $_FILES['imagem_new'] : '';
 $formulario['imagem_old'] = isset($_POST['imagem_old'])? $_POST['imagem_old'] : '';
-
 
 
 try{
@@ -25,7 +24,7 @@ try{
 
         //Validar se a imagem chegou
         if($formulario['imagem_new']['size'] <= 0){
-            echo json_encode(['status' => 2, 'mensagem' => 'Existem campo vazios. Verifique!']);
+            echo json_encode(['status' => 'erro', 'mensagem' => 'Existem campo vazios. Verifique!']);
             exit;
         }
 
@@ -40,13 +39,13 @@ try{
 
         $banco->executarComando($sql, $parametros);
 
-        echo json_encode(['status' => 1, 'mensagem' => 'EPI cadastrado com sucesso!']);
+        echo json_encode(['status' => 'sucesso', 'mensagem' => 'EPI cadastrado com sucesso!']);
     }else{
 
-        if (isset($formulario['imagem_new']) && !empty($formulario['imagem_old'])) {
+        if (isset($formulario['imagem_new']) && !empty($formulario['imagem_new'])) {
             //Validar se a imagem chegou
             if($formulario['imagem_new']['size'] <= 0){
-                echo json_encode(['status' => 2, 'mensagem' => 'Existem campo vazios. Verifique!']);
+                echo json_encode(['status' => 'erro', 'mensagem' => 'Existem campo vazios. Verifique!']);
                 exit;
             }
 
@@ -69,7 +68,7 @@ try{
         } else {
 
             if (empty($formulario['imagem_old'])) {
-                echo json_encode(['status' => 2, 'mensagem' => 'Existem campo vazios. Verifique!']);
+                echo json_encode(['status' => 'erro', 'mensagem' => 'Existem campo vazios. Verifique!']);
                 exit;
             }else{
                 $formulario['imagem'] = $formulario['imagem_old'];
@@ -82,10 +81,10 @@ try{
 
         $banco->executarComando($sql, $parametros);
 
-        echo json_encode(['status' => 1, 'mensagem' => 'EPI atualizado com sucesso!']);
+        echo json_encode(['status' => 'sucesso', 'mensagem' => 'EPI atualizado com sucesso!']);
     }
 }catch(PDOException $erro){
-    echo json_encode(['status' => 3, 'mensagem' => $erro->getMessage()]);
+    echo json_encode(['status' => 'erro', 'mensagem' => $erro->getMessage()]);
 }
 
 
