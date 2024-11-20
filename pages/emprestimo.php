@@ -36,26 +36,11 @@
                            <input type="hidden" id="txt_nome_imagem">
 
                            <div class="form-group">
-                               <label>Descrição</label>
-                               <input type="text" class="form-control" id="descricao" required maxlength="255">
                                <label><b>Descrição</b></label>
                                <textarea style="font-size: 0.9rem; height: 80px;" class="form-control" id="descricao" required maxlength="255"></textarea>
                            </div>
 
                            <div class="form-group">
-<<<<<<< Updated upstream
-                               <label>Quantidade:</label>
-                               <input type="number" class="form-control" id="quantidade">
-                           </div> <br>
-
-                           <div class="form-group">
-                               <label>Colaborador:</label>
-                               <select id="fk_colaborador">
-                                   <option value="">Selecione...</option>
-                               </select>
-                           </div> <br>
-
-=======
                                <label><b>Quantidade:</b></label>
                                <input type="number" class="form-control" id="quantidade">
                            </div>
@@ -66,7 +51,6 @@
                                </select>
 
                            </div>
->>>>>>> Stashed changes
                            <div class="form-group">
                                <label><b>EPI:</b></label> <br>
                                <select style="width:100%" class="form-control" id="fk_epi">
@@ -96,28 +80,15 @@
                listarEmprestimo();
                listarFK();
            }
-
-           $(document).ready(function() {
-    // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
-    $(document).click(function(event) {
-        var $target = $(event.target);
-        // Verifique se o clique foi fora do modal
-        if (!$target.closest('.modal').length && !$target.is('.modal')) {
-            // Resetar o formulário
-            $('form')[0].reset();
-        }
-    });
-});
-               // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
-               $(document).click(function(event) {
-                   var $target = $(event.target);
-                   // Verifique se o clique foi fora do modal
-                   if (!$target.closest('.modal').length && !$target.is('.modal')) {
-                       // Resetar o formulário
-                       $('form')[0].reset();
-                   }
-               });
-           });
+            // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
+            $(document).click(function(event) {
+                var $target = $(event.target);
+                // Verifique se o clique foi fora do modal
+                if (!$target.closest('.modal').length && !$target.is('.modal')) {
+                    // Resetar o formulário
+                    $('form')[0].reset();
+                }
+            });
 
            function listarFK() {
                $.ajax({
