@@ -22,40 +22,43 @@ if (isset($_SESSION['logado'])) {
 </head>
 
 <body>
-        <img src="assets/img/11zon_cropped (1).jpeg" id="background" alt="">
-        <div class="box">
-            <form onsubmit="enviarLogin()">
-                <div class="orgLogin">
-                    <h1>Entrar no sistema</h1>
-                </div>
+    <img src="assets/img/11zon_cropped (1).jpeg" id="background" alt="">
+    <div class="box">
+        <form onsubmit="enviarLogin()">
+            <div class="orgLogin">
+                <h1>Entrar no sistema</h1>
+            </div>
 
-                <div class="inputContainer">
-                    <input type="email" id="txt_email" required />
-                    <label>Email</label>
-                </div>
+            <div class="inputContainer">
+                <input type="email" id="txt_email" required />
+                <label>Email</label>
+            </div>
 
-                <div class="inputContainer">
-                    <input type="password" id="txt_senha" required />
-                    <label>Senha</label>
-                </div>
+            <div class="inputContainer">
+                <input type="password" id="txt_senha" required />
+                <label>Senha</label>
+            </div>
 
-                <button type="button" class="btn" onclick="enviarLogin()">Login</button>
+            <button type="button" class="btn" onclick="enviarLogin()">Login</button>
 
-                <div class="orgLogin" id="eSenha">
-                    <h3>
-                        <a href="" onclick="alertLogin()">Esqueceu a senha?</a>
-                    </h3>
-                </div>
-            </form>
-        </div>
+            <div class="orgLogin" id="eSenha">
+                <h3>
+                    <a href="" onclick="alertLogin()">Esqueceu a senha?</a>
+                </h3>
+            </div>
+        </form>
+    </div>
 
-        <footer>
-            <img src="assets/img/senai-logo-1.png" alt="" id="senai">
-        </footer>
+    <footer>
+        <img style="padding: 0; margin: 0;" src="assets/img/senai-logo-1.png" alt="" id="senai">
+        <h6 style="padding: 0; margin: 0; padding-top:4px">Eduardo Luís Maltauro & João Vitor Rosset - 2024</h3>
+    </footer>
 </body>
 
 <script>
-    $('form').submit(() => {return false })
+    $('form').submit(() => {
+        return false
+    })
 
     function alertLogin() {
         alert('Contate o suporte para redefinir sua senha!')
@@ -74,7 +77,7 @@ if (isset($_SESSION['logado'])) {
                 if (retorno.status === 'sucesso') {
                     window.location.reload()
                     alert('Login efetuado com sucesso!')
-                } else{
+                } else {
                     alert(retorno.mensagem)
                 }
             },
