@@ -40,24 +40,16 @@
 
                            <div class="form-group">
                                <label>Quantidade:</label>
-                               <input type="text" class="form-control" id="quantidade">
+                               <input type="number" class="form-control" id="quantidade">
                            </div> <br>
 
-                           <div class="form-group">
-                               <label>Data de Retirada</label>
-                               <input type="date" class="form-control" id="data_retirada" required>
-                           </div>
-                           <div class="form-group">
-                               <label>Data de Devolução</label>
-                               <input type="date" class="form-control" id="data_devolucao">
-                           </div> <br>
                            <div class="form-group">
                                <label>Colaborador:</label>
                                <select id="fk_colaborador">
                                    <option value="">Selecione...</option>
                                </select>
-
                            </div> <br>
+
                            <div class="form-group">
                                <label>EPI:</label>
                                <select id="fk_epi">
@@ -156,10 +148,11 @@
                             //    var rFormatada = dataR.toLocaleDateString('pt-BR');
 
                                 // Uma solução loucura para arrumar 🤪
+                                console.log(emprestimo.data_re)
                                 let dataR = emprestimo['data_retirada']
                                 let rFormatada = dataR.split('-').reverse().join('/')
 
-                               if(emprestimo['data_devolucao'] !== '0000-00-00'){
+                               if(emprestimo['data_devolucao'] !== null){
                                     // var dataD = new Date(emprestimo['data_devolucao']);
                                     // var dFormatada = dataD.toLocaleDateString('pt-BR');
 

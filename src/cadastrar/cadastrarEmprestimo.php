@@ -13,13 +13,6 @@ if(in_array('', $formulario)){
     exit;
 }
 
-$formulario['data_devolucao'] = isset($_POST['data_devolucao'])? $_POST['data_devolucao'] : '';
-
-if(empty($formulario['data_devolucao'])){
-    $status = 1;
-}else{
-    $status = 2;
-}
 
 try{
     $banco = new BancoDeDados;
@@ -40,15 +33,14 @@ try{
 
     $banco->iniciarTransacao();
 
-    $sql = 'INSERT INTO emprestimos (status, descricao, quantidade, data_retirada, data_devolucao, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    $parametros = [$status, $formulario['descricao'], $formulario['quantidade'], $formulario['data_retirada'], $formulario['data_devolucao'], $formulario['id_epi'], $formulario['id_colaborador']];
+    $sql = 'INSERT INTO emprestimos (descricao, quantidade, data_retirada, id_epi, id_colaborador) VALUES (?, ?, ?, ?, ?)';
+    $parametros = [$formulario['descricao'], $formulario['quantidade'], $formulario['data_retirada'], $formulario['id_epi'], $formulario['id_colaborador']];
     $banco->executarComando($sql, $parametros);
 
-    if($status == 1){
-        $sql = 'UPDATE epis set qtd_estoque = qtd_estoque - ? WHERE id_epi = ?';
-        $parametros = [$formulario['quantidade'], $formulario['id_epi']];
-        $banco->executarComando($sql, $parametros);
-    }
+
+    $sql = 'UPDATE epis set qtd_estoque = qtd_estoque - ? WHERE id_epi = ?';
+    $parametros = [$formulario['quantidade'], $formulario['id_epi']];
+    $banco->executarComando($sql, $parametros);
 
     $banco->confirmarTransacao();
     echo json_encode(['status' => 'sucesso', 'mensagem' => 'Emprestimo cadastrado com sucesso!']);

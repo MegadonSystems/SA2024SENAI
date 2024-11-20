@@ -179,6 +179,8 @@ if (!isset($_SESSION['logado'])) {
 
         }
         else if (tela === "emprestimo"){
+            const dataAtual = new Date().toLocaleDateString().split('/').reverse().join('-')
+            
             $.ajax({
             type: 'post',
             dataType: 'json',
@@ -186,8 +188,7 @@ if (!isset($_SESSION['logado'])) {
             data: { 
                 'descricao':  document.getElementById('descricao').value,
                 'quantidade':  document.getElementById('quantidade').value,
-                'data_retirada': document.getElementById('data_retirada').value,
-                'data_devolucao': document.getElementById('data_devolucao').value,
+                'data_retirada': dataAtual,
                 'id_colaborador': document.getElementById('fk_colaborador').value,
                 'id_epi': document.getElementById('fk_epi').value
             },
@@ -232,6 +233,7 @@ if (!isset($_SESSION['logado'])) {
     function fecharModal(){
         $('#adicionar').modal('hide')
     }
+
 
     document.addEventListener('DOMContentLoaded', () => {
         const url = new URLSearchParams(window.location.search)
