@@ -72,6 +72,7 @@
         if (!$target.closest('.modal').length && !$target.is('.modal')) {
           // Resetar o formulário
           $('form')[0].reset();
+          document.getElementById('txt_id').value = 'NOVO';
         }
       });
     });
@@ -171,7 +172,7 @@
             if (retorno['status'] == 'sucesso') {
 
                     listarEpi(); //Atualizar a listagem de EPI's
-                    // window.location.reload()
+                    window.location.reload()
                 }
             },
             error: function(erro) {

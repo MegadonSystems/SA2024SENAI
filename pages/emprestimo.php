@@ -87,6 +87,7 @@
                 if (!$target.closest('.modal').length && !$target.is('.modal')) {
                     // Resetar o formulário
                     $('form')[0].reset();
+                    document.getElementById('txt_id').value = 'NOVO';
                 }
             });
 
@@ -130,7 +131,7 @@
                    url: 'src/selecionar/selecionarEmprestimos.php',
                    success: function(retorno) {
                        if (retorno['status'] == 'sucesso') {
-                           var tabelaEmprestimos = document.querySelector('#tabela-emprestimos tbody');
+                           var tabelaEmprestimos = document.querySelector('#tabela-emprestimos tbody')
                            tabelaEmprestimos.innerHTML = ''
 
                            var emprestimos = retorno['dados'];
@@ -142,19 +143,17 @@
                                    var status = 'Concluído'
                                }
 
-                            //    var dataR = new Date(emprestimo['data_retirada']);
-                            //    var rFormatada = dataR.toLocaleDateString('pt-BR');
-                               //    var dataR = new Date(emprestimo['data_retirada']);
-                               //    var rFormatada = dataR.toLocaleDateString('pt-BR');
 
                                 // Uma solução loucura para arrumar 🤪
-                                console.log(emprestimo.data_re)
+                                console.log(emprestimo.data_devolucao)
                                 let dataR = emprestimo['data_retirada']
                                 let rFormatada = dataR.split('-').reverse().join('/')
 
-                               if(emprestimo['data_devolucao'] !== null){
-                                    // var dataD = new Date(emprestimo['data_devolucao']);
-                                    // var dFormatada = dataD.toLocaleDateString('pt-BR');
+                               if(emprestimo['data_devolucao'] === null ) {
+                                    var dFormatada = "Não Devolvido"
+                               }else{
+                                    var dataD = emprestimo['data_devolucao']
+                                    var dFormatada = dataD.split('-').reverse().join('/')
                                }
 
 
@@ -209,7 +208,7 @@
                                console.log(retorno)
                                if (retorno['status'] == 'sucesso') {
                                    alert(retorno['mensagem'])
-                                   location.reload()
+                                   window.location.reload()
                                } else {
 
                                }

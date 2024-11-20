@@ -29,7 +29,6 @@
         </div>
         <div class="modal-body">
           <input type="hidden" id="txt_id" value="NOVO">
-          <input type="hidden" id="txt_nome_imagem">
 
           <div class="form-group">
             <label><b>Nome</b></label>
@@ -65,6 +64,7 @@
         if (!$target.closest('.modal').length && !$target.is('.modal')) {
             // Resetar o formulário
             $('form')[0].reset();
+            document.getElementById('txt_id').value = 'NOVO';
         }
     });
 });
@@ -158,7 +158,7 @@
                 if (retorno['status'] == 'sucesso') {
 
                     listarUsuario(); //Atualizar a listagem de usuários
-                    // window.location.reload()
+                    window.location.reload()
                 }
             },
             error: function(erro) {

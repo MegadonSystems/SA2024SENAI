@@ -65,6 +65,7 @@ $(document).ready(function() {
         if (!$target.closest('.modal').length && !$target.is('.modal')) {
             // Resetar o formulário
             $('form')[0].reset();
+            document.getElementById('txt_id').value = 'NOVO';
         }
     });
 });
@@ -176,7 +177,7 @@ $(document).ready(function() {
                 if (retorno['status'] == 'sucesso') {
 
                     listarColaborador();
-                    // window.location.reload()
+                    window.location.reload()
                 }
             },
             error: function(erro) {
