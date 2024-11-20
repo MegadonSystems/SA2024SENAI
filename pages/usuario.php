@@ -20,27 +20,27 @@
 </div>
 
 <div id="adicionar" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog" id="modalUsuario">
     <div class="modal-content">
       <form id="form_usuario" onsubmit="salvar()">
         <div class="modal-header">
           <h4 id="titulo" class="modal-title">Usuário</h4>
-          <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+          <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i style="color:antiquewhite" class="bi bi-x-square"></i></button>
         </div>
         <div class="modal-body">
           <input type="hidden" id="txt_id" value="NOVO">
           <input type="hidden" id="txt_nome_imagem">
 
           <div class="form-group">
-            <label>Nome</label>
+            <label><b>Nome</b></label>
             <input type="text" class="form-control" id="nome" required maxlength="255">
           </div>
           <div class="form-group">
-            <label>Email</label>
+            <label><b>Email</b></label>
             <input type="email" class="form-control" id="email" required maxlength="255">
           </div>
           <div class="form-group">
-            <label>Senha</label>
+            <label><b>Senha</b></label>
             <input type="password" class="form-control" id="senha" required maxlength="255">
           </div>
         </div>

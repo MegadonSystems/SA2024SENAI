@@ -22,7 +22,7 @@ if (isset($_SESSION['logado'])) {
 </head>
 
 <body>
-        <img src="assets/img/epi_1.jpg" id="background" alt="">
+        <img src="assets/img/11zon_cropped (1).jpeg" id="background" alt="">
         <div class="box">
             <form onsubmit="enviarLogin()">
                 <div class="orgLogin">

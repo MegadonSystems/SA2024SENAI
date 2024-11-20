@@ -20,6 +20,7 @@
     margin-right: 4%;
     position: relative;
     border: 1px black solid;
+    border-bottom: none;
     background-color: rgb(29, 116, 55);
     width: 19.5%;
     height: 100%;
@@ -96,4 +97,15 @@
 #tabela-emprestimos tr{
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+}
+
+#fecharModal{
+    font-size: 2rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+#descricao{
+    resize: none;
 }

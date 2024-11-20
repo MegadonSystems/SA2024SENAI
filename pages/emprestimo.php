@@ -23,11 +23,13 @@
 
        <div id="adicionar" class="modal fade">
            <div class="modal-dialog">
+           <div class="modal-dialog" id="modalEmprestimo">
                <div class="modal-content">
                    <form id="form_emprestimo">
                        <div class="modal-header">
                            <h4 class="modal-title">Empréstimo</h4>
                            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                           <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i style="color:antiquewhite" class="bi bi-x-square"></i></button>
                        </div>
                        <div class="modal-body">
                            <input type="hidden" id="txt_id" value="novo">
@@ -36,9 +38,12 @@
                            <div class="form-group">
                                <label>Descrição</label>
                                <input type="text" class="form-control" id="descricao" required maxlength="255">
+                               <label><b>Descrição</b></label>
+                               <textarea style="font-size: 0.9rem; height: 80px;" class="form-control" id="descricao" required maxlength="255"></textarea>
                            </div>
 
                            <div class="form-group">
+<<<<<<< Updated upstream
                                <label>Quantidade:</label>
                                <input type="number" class="form-control" id="quantidade">
                            </div> <br>
@@ -50,9 +55,21 @@
                                </select>
                            </div> <br>
 
+=======
+                               <label><b>Quantidade:</b></label>
+                               <input type="number" class="form-control" id="quantidade">
+                           </div>
                            <div class="form-group">
-                               <label>EPI:</label>
-                               <select id="fk_epi">
+                               <label><b>Colaborador:</b></label><br>
+                               <select style="width:100%" class="form-control" id="fk_colaborador">
+                                   <option value="">Selecione...</option>
+                               </select>
+
+                           </div>
+>>>>>>> Stashed changes
+                           <div class="form-group">
+                               <label><b>EPI:</b></label> <br>
+                               <select style="width:100%" class="form-control" id="fk_epi">
                                    <option value="">Selecione...</option>
                                </select>
 
@@ -91,6 +108,16 @@
         }
     });
 });
+               // Supondo que seu modal tenha a classe 'modal' e o formulário tenha o id 'myForm'
+               $(document).click(function(event) {
+                   var $target = $(event.target);
+                   // Verifique se o clique foi fora do modal
+                   if (!$target.closest('.modal').length && !$target.is('.modal')) {
+                       // Resetar o formulário
+                       $('form')[0].reset();
+                   }
+               });
+           });
 
            function listarFK() {
                $.ajax({
@@ -146,6 +173,8 @@
 
                             //    var dataR = new Date(emprestimo['data_retirada']);
                             //    var rFormatada = dataR.toLocaleDateString('pt-BR');
+                               //    var dataR = new Date(emprestimo['data_retirada']);
+                               //    var rFormatada = dataR.toLocaleDateString('pt-BR');
 
                                 // Uma solução loucura para arrumar 🤪
                                 console.log(emprestimo.data_re)
@@ -155,14 +184,7 @@
                                if(emprestimo['data_devolucao'] !== null){
                                     // var dataD = new Date(emprestimo['data_devolucao']);
                                     // var dFormatada = dataD.toLocaleDateString('pt-BR');
-
-                                    // Uma solução loucura para arrumar 🤪
-                                    var dataD = emprestimo['data_devolucao']
-                                    var dFormatada = dataD.split('-').reverse().join('/')
-                               }else{
-                                    var dFormatada = 'Não Devolvido';
                                }
-                               
 
 
                                var linha = document.createElement('tr');

@@ -20,30 +20,30 @@
   </table>
 
   <div id="adicionar" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="modalColaborador">
       <div class="modal-content">
         <form id="form_colaborador" onsubmit="salvar()">
           <div class="modal-header">
             <h4 class="modal-title">Colaborador</h4>
-            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i style="color:antiquewhite" class="bi bi-x-square"></i></button>
           </div>
           <div class="modal-body">
             <input type="hidden" id="txt_id" value="NOVO">
 
             <div class="form-group">
-              <label>Nome</label>
+              <label><b>Nome</b></label>
               <input type="text" class="form-control" id="nome" required maxlength="255">
             </div>
             <div class="form-group">
-              <label>E-Mail</label>
+              <label><b>E-Mail</b></label>
               <input type="email" class="form-control" id="email" required maxlength="255">
             </div>
             <div class="form-group">
-              <label>CPF</label>
+              <label><b>CPF</b></label>
               <input type="text" class="form-control" id="cpf" required maxlength="14">
             </div>
             <div class="form-group">
-              <label>Data Nascimento</label>
+              <label><b>Data Nascimento</b></label>
               <input type="date" class="form-control" id="data_nascimento" required>
             </div>
           </div>

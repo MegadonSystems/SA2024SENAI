@@ -21,31 +21,31 @@
   </table>
 
   <div id="adicionar" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="modalEpi">
       <div class="modal-content">
         <form id="form_epi">
           <div class="modal-header">
             <h4 class="modal-title">EPI</h4>
-            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="fecharModal" type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i style="color:antiquewhite" class="bi bi-x-square"></i></button>
           </div>
           <div class="modal-body">
             <input type="hidden" id="txt_id" value="NOVO">
             <input type="hidden" id="txt_imagem">
             
             <div class="form-group">
-              <label>Nome</label>
+              <label><b>Nome</b></label>
               <input type="text" class="form-control" id="nome" required maxlength="255">
             </div>
             <div class="form-group">
-              <label>Descrição</label>
-              <input type="text" class="form-control" id="descricao" required>
+              <label><b>Descrição</b></label>
+              <textarea style="font-size: 0.9rem; height: 80px;" class="form-control" id="descricao" required maxlength="255"></textarea>
             </div>
             <div class="form-group">
-              <label>Qtd. Estoque</label>
+              <label><b>Qtd. Estoque</b></label>
               <input type="number" class="form-control" id="estoque" required>
             </div>
             <div class="form-group">
-              <label>Imagem</label>
+              <label><b>Imagem</b></label>
               <input type="file" class="form-control" id="imagem" required>
             </div>
 
@@ -59,6 +59,7 @@
   </div>
 
   <script>
+
     window.onload = function() {
       listarEpi();
     }
