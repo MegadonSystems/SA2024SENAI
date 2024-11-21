@@ -88,8 +88,8 @@
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['codigo_barra'] != '' ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver</a>`: 'Não Gerado'
-              let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver imagem</a>`: 'Não Disponivel'
+              let codBar = epi['codigo_barra'] != '' ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver Cod. Barra</a>`: 'Não Gerado'
+              let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver Imagem</a>`: 'Não Disponivel'
 
               var linha = document.createElement('tr');
               linha.innerHTML =
