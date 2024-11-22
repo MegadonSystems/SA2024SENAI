@@ -23,8 +23,8 @@ nav{
 
 #logo{
     margin-left: 4%;
-    width: 13%;
-    height: 75%;
+    width: 13.5%;
+    height: auto;
 }
 
 #item{
@@ -63,7 +63,7 @@ nav{
 
 .divider {
     width: 1px; /* Largura da barra */
-    height: 40%; /* Altura da barra */
+    height: 30%; /* Altura da barra */
     background-color: antiquewhite; /* Cor da barra */
     margin: 0 10px; /* Espaço ao redor da barra */
 }

@@ -17,6 +17,9 @@ if (isset($_SESSION['logado'])) {
     <!-- CSS -->
     <link rel="stylesheet" href="style/index.css">
 
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
@@ -51,7 +54,7 @@ if (isset($_SESSION['logado'])) {
 
     <footer>
         <img style="padding: 0; margin: 0;" src="assets/img/senai-logo-1.png" alt="" id="senai">
-        <h6 style="padding: 0; margin: 0; padding-top:4px">Eduardo Luís Maltauro & João Vitor Rosset - 2024</h3>
+        <h6 style="padding: 0; margin: 0; padding-top:4px">Eduardo Luís Maltauro & João Vitor Rosset - 2024 <a style="color: #0d6efd; text-decoration: underline" href="https:/github.com/MegadonSystems/SA2024SENAI"><i class="bi bi-link-45deg"></i>(MGD Sistemas)</a></h3>
     </footer>
 </body>
 

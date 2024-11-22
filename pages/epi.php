@@ -10,7 +10,7 @@
         <th style="width:230px">Nome</th>
         <th>Descrição</th>
         <th style="width:160px">Qtd. Estoque</th>
-        <th style="width:115px">Imagem</th>
+        <th style="width:125px">Imagem</th>
         <th style="width:140px">Cod. Barra</th>
         <th style="width:190px; border-bottom: none ">Ações</th>
       </tr>
@@ -88,9 +88,9 @@
             tabelaEpis.innerHTML = '';
             var epis = retorno['dados'];
             epis.forEach(function(epi) {
-              let codBar = epi['codigo_barra'] != '' ? `<a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver Cod. Barra</a>`: 'Não Gerado'
+              let codBar = epi['codigo_barra'] != '' ? `<i class="bi bi-link-45deg"></i><a href="https://www.barcodesinc.com/generator/image.php?code=${epi['codigo_barra']}&style=197&type=C128B&width=300&height=100&xres=1&font=3" target="_blank">Ver Cod. Barra</a>`: 'Não Gerado'
               let imagem = epi['imagem']? `<a href="src/upload/${epi['imagem']}" target="_blank">Ver Imagem</a>`: 'Não Disponivel'
-
+              
               var linha = document.createElement('tr');
               linha.innerHTML =
                 `
@@ -98,8 +98,8 @@
               <td id="nomeFont" style="width:230px">${epi['nome']}</td>
               <td id="descricaoFont">${epi['descricao']}</td>
               <td style="width:160px">${epi['qtd_estoque']}</td>
-              <td style="width:115px">${imagem}</td>
-              <td style="width:140px; border-right: 1px solid black">${codBar}</td>
+              <td style="width:125px;" class='urlBtn'><i style='font-size: 1.1rem' class="bi bi-link-45deg"></i>${imagem}</td>
+              <td style="width:140px; border-right: 1px solid black" class='urlBtn'>${codBar}</td>
               <td style="width:190px; border-bottom: none; border-right: none" class='orgAcao'>  
               <a class='acao' href='#' title='Alterar'  onclick='carregarEpi(${epi['id_epi']})' style='margin-left:20px'><i class='bi bi-pencil-square'></i></i></i></a>
               <a class='acao' href='#' title='Excluir'  onclick='excluirEpi(${epi['id_epi']})' style='margin-left:30px'><i class='bi bi-trash3-fill'></i></a>

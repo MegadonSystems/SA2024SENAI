@@ -36,7 +36,7 @@ if (!isset($_SESSION['logado'])) {
     <nav>
         <div id="decor">
             <img id="logo" src="assets/img/Labore-Consuloria-EPI-Placa.png" alt="">
-            <p style="margin-bottom: 0; margin-left: 4%;">Empréstimo de EPI's</p>
+            <p style="margin-bottom: 0; margin-left: 4%; font-size: 1.65rem">Empréstimo de EPI's</p>
         </div>
         <div id="item">
             <span class="divider"></span>
